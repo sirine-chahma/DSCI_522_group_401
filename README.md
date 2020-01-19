@@ -9,19 +9,28 @@ The [Data](https://gist.githubusercontent.com/meperezcuello/82a9f1c1c473d6585e75
 
 For this project we are working on the following main predictive research question
 
-> Our research question is "given a person's information, what would be his/her predicted medical expenses?"
+> Our research question is "Given a person's information, what would be his/her predicted medical expenses?"
 
 Throughout this project we also want to investigate two more inferential sub-questions
 
-- Is there a significant difference of expenses between smokers and non-smokers? (inferential - We would do a two-side hypothesis test)
-- Is there a significant difference of expenses between males and females? (inferential - We would do a two-side hypothesis test)
+- Is there a significant difference of expenses between smokers and non-smokers? (inferential)
+- Is there a significant difference of expenses between males and females? (inferential)
 
 
 ### Analysis Plan
-Make a plan of how you will analyze the data (report an estimate and confidence intervals? hypothesis test? classification with a decision tree?). Choose something you already know how to do (report an estimate and confidence intervals, a two-group hypothesis, linear regression, classification with a decision tree, etc).
+
+ > For our main question, we will be running several regression models including linear regression, decision tree and random forest. We will pick the best model for prediciting the medical expenses.
+ >
+ > For the sub-questions, we will be running two two-sided hypothesis tests, comparing the means of the different groups under study. 
 
 ### Exploratory Data Analysis
-Discuss at least one exploratory data analysis table and one exploratory data analysis figure you will create that makes sense for your research question, the data that you have, and the analysis you plan to do.
+
+> - In order to know if medical expenses increases with age, and also its bifurcation on sex, we are going to plot the expensive VS the age for each sex.
+> - In order to know if medical expenses increases with age, and also its bifurcation on smokers and non-smokers, we are going to plot the expensive VS the age for smokers and non-smokers.
 
 ### Results of Analysis
 Suggest how you would share the results of your analysis as one or more tables and/or figures.
+
+> - R-squared, ajusted R-squared values or any relevant metric
+> - Best fit line plot (depending on the features that will be significant)
+> - p-values for inferential sub-questions
