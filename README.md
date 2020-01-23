@@ -38,6 +38,11 @@ Suggest how you would share the results of your analysis as one or more tables a
 ### Usage
 
 ```{}
-#split the data
+#Split the data
 Rscript src/data/pre_processing_data.R --input_file=data/original/medical_cost_data.csv --output_dir=data/processed
 ``` 
+
+```{}
+#EDA Script
+python eda.py --input_data=../../data/processed/medical_cost_data_train.csv --output_location=../../reports/figures
+```
