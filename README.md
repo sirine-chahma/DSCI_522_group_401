@@ -34,3 +34,10 @@ Suggest how you would share the results of your analysis as one or more tables a
 > - R-squared, ajusted R-squared values or any relevant metric
 > - Best fit line plot (depending on the features that will be significant)
 > - p-values for inferential sub-questions
+
+### Usage
+
+```{}
+#split the data
+Rscript src/data/pre_processing_data.R --input_file=data/original/medical_cost_data.csv --output_dir=data/processed
+``` 
