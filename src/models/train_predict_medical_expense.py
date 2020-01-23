@@ -1,11 +1,17 @@
 # author: Karanpal	Singh, Sreejith	Munthikodu, Sirine	Chahma
 # date: 2020-01-22
 
-'''This script downloads the data from a given url and saves in the data
-folder in the project directory. This script takes a url to the data and a 
-file location as the arguments.
+'''This reads training and test data from specified locations, perform 
+predictive analysis by performing pre-processing, comparing various models,
+hyper-parameter optimization of the selected model, and evaluating on the
+training and test dataset. It saves the performance of various models,
+performance of the final tuned model, predicted vs actual plot and predicted 
+vs residuals plot. In the current version, this script is not robust enough
+to select a model from the list of models and perform hyper-parameter tuning. 
 
-Usage: get_data.py [--url=<url> --file_location=<file_location>]
+Usage: get_data.py --training_data_file_path=<training_data_file_path> 
+        --test_data_file_path=<test_data_file_path> 
+        --results_file_location=<results_file_location>
  
 '''
 
@@ -18,6 +24,7 @@ import seaborn as sns
 import altair as alt
 
 import time
+import os
 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
@@ -37,13 +44,17 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, explained_v
 
 
 
-def main():
+def main(training_data_file_path, test_data_file_path, results_file_location):
+    """The main function."""
+
     # Load training data
-    print("Loading preprocessed training data...\n")
-    medical_data = pd.read_csv("../../data/processed/medical_cost_data_training.csv")
+    print("\nLoading preprocessed training data...\n")
+    medical_data = pd.read_csv(training_data_file_path)
+
     # Split response and target variables
     X = medical_data.drop("charges", axis=1)
     y = medical_data.charges
+
     # Identify categoric and numeric features
     categoric_features, numeric_features = get_cat_num_features(X)
 
@@ -67,7 +78,12 @@ def main():
     }
 
     results_df = try_models(models, X, y, preprocessor)
+    print("Results from fitting models with default parameters: \n")
     print(results_df)
+
+    # Save performance of various models
+    results_df.to_csv(os.path.join(results_file_location, "tables/regression_models_base_errors.csv"))
+
 
     # Tune DecisionTreeRegressor
     print("\nPerforming hyper-parameter tuning on DecisionTreeRegressor. This may take several minutes...\n")
@@ -82,15 +98,14 @@ def main():
 
     grid = GridSearchCV(reg, param_grid, cv=5, 
                         return_train_score=True, 
-                        scoring="neg_mean_absolute_error",
-                        iid=False)
+                        scoring="neg_mean_absolute_error")
     grid.fit(X, y)
 
     print(f"Best parameters are : {grid.best_params_}\n")
 
     # Load the test data
     print("Loading preprocessed test data...\n")
-    medical_data_test = pd.read_csv("../../data/processed/medical_cost_data_test.csv")
+    medical_data_test = pd.read_csv(test_data_file_path)
 
     # Split response and target variables
     X_test = medical_data_test.drop("charges", axis=1)
@@ -107,6 +122,9 @@ def main():
     results_df.index = ["Mean Absolute Error", "Mean Squared Error", "Root Mean Squared Error", "R2_score", "Explained_variance_score"]
     print("Results: \n")
     print(results_df)
+
+    # Save results
+    results_df.to_csv(os.path.join(results_file_location, "tables/regression_errors.csv"))
 
     # Plot prediction results
     print("Generating plots...\n")
@@ -144,11 +162,26 @@ def main():
                         )
     # Save the plots
     print("Saving generated plots...\n")
-    predicted_vs_actual_plot.save("predicted_vs_actual_plot.png")
-    residual_plot.save("residual_plot.png")
+    predicted_vs_actual_plot.save(os.path.join(results_file_location, "figures/predicted_vs_actual_plot.png"))
+    residual_plot.save(os.path.join(results_file_location, "figures/residual_plot.png"))
 
 
 def get_cat_num_features(x):
+    """ Identifies categorical and numerical
+    features from the columns of a dataframe 
+    using data type. 
+​
+    Parameters
+    ----------
+    x : DateFrame
+        Training data.
+​
+    Returns
+    -------
+    categoric_features, numeric_features : tuple
+        Tuple containinig lists of categoric 
+        feature names and numeric feature names
+    """
     data_types = x.dtypes
     categoric_features = []
     numeric_features = []
@@ -162,6 +195,28 @@ def get_cat_num_features(x):
 
 
 def try_models(models, X_train, y_train, preprocessor):
+    """ Fits different regression models on the given
+    dataset and evaluates the mean absolute error. 
+​
+    Parameters
+    ----------
+    models : dict
+        Dictionary of various regression models to try.
+    X_train : DataFrame
+        Training data on which the regression models
+        are to be fitted
+    y_train: Series
+        True labels of the training data
+    preprocessor: ColumnTransformer
+        Sklearn column transformer to preprocess the 
+        categorical and numerical features
+​
+    Returns
+    -------
+    results_df : DataFrame
+        Dataframe containing the mean absolute error
+        of each of the regression models
+    """
     results_dict = {}
     for model_name, model in models.items():
         # print(f"trainning {model}")
@@ -184,16 +239,33 @@ def try_models(models, X_train, y_train, preprocessor):
 
 
 def get_error(model, X, y):
+    """ Evaluates various regression error metrics
+    using the given model on the given dataset. 
+​
+    Parameters
+    ----------
+    x : DataFrame
+        Training data/ test data.
+​    y : Series
+        Training label/ test label
+    Returns
+    -------
+    errors : list
+        List of regression metrics evaluated on the
+        given dataset
+    """
     y_predicted = model.predict(X)
     mean_abs_error = mean_absolute_error(y, y_predicted)
     mean_sqrd_error = mean_squared_error(y, y_predicted)
     root_mean_sqrd_error = np.sqrt(mean_squared_error(y, y_predicted))
     r2 = r2_score(y, y_predicted)
     exp_var_score = explained_variance_score(y, y_predicted)
+    errors = [mean_abs_error, mean_sqrd_error, root_mean_sqrd_error, r2, exp_var_score]
 
-    return [mean_abs_error, mean_sqrd_error, root_mean_sqrd_error, r2, exp_var_score]
+    return errors
 
 
 if __name__ == "__main__":
     opt = docopt(__doc__)
-    main()
+    main(opt["--training_data_file_path"], opt["--test_data_file_path"], 
+            opt["--results_file_location"])
