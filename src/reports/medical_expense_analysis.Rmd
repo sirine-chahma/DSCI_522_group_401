@@ -1,6 +1,8 @@
 ---
 title: "Medical Expense Data Analysis and Predictive Modeling"
-output: github_document
+output:
+  github_document:
+       pandoc_args: --webtex
 
 ---
 
@@ -30,16 +32,99 @@ set.seed(123)
 
 # Exploratory analysis on the training data set 
 
-- description
-- plots
-- observatons
+To understand the nature of predictors with respect to `Medical Expenses` we will perform Exploratory Data Analysis and we will try to understand if there are some intresting behaviours.
 
-# Answer the inferential research questions 
+##### 1. Let's see how `Medical Expenses` are changing with `Age`
 
-- probelm statement
-- hypothesis test
-- inference
+<html>
+<img src = '../../reports/figures/1.Expenses_VS_Age.png'>
+</html>
 
+It can be observed that `Medical Expense` of people is increasing, as `Age` increases.
+
+##### 2. Let's see how  `Medical Expenses` are changing with `BMI (Body Mass Index)`
+
+<html>
+<img src = '../../reports/figures/2.Expenses_VS_BMI.png'>
+</html>
+
+The highest expenses seem to occur for people who have a higher BMI.
+
+##### 3. Let's see how much money males and females spending on medical treatments between 18-64 Years
+
+<html>
+<img src = '../../reports/figures/3.Expenses_VS_Gender.png'>
+</html>
+
+The expenses seem to grow with age for both males and females. It looks like Males in their **20's & 60's** tend to pay more on their `Medical Expenses` than Females. Females in their **40's** are paying more than Males on their `Medical Expenses`.
+
+
+##### 4. Let's see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
+
+We expect expenditures by smokers should be higher than the non smokers.
+
+<html>
+<img src = '../../reports/figures/4.Expenses_VS_Smoker.png'>
+</html>
+
+**Interesting!!!** - As expected, Health expenses of smokers are a lot higher than the one of non-smokers.
+
+##### 5. Let's see how `BMI` is changing with Age for Males and Females
+
+We are expecting both male and females have usual `BMI`.
+
+<html>
+<img src = '../../reports/figures/5.BMI_VS_AGE.png'>
+</html>
+
+The `BMI` doesn't seem to vary depending on the age nor the sex.
+
+##### 6. Let's see the Male & Female Expenses Over BMI
+
+<html>
+<img src = '../../reports/figures/6.EXP_VS_BMI.png'>
+</html>
+
+The highest expenses seem to occur for people from both genders who have a BMI that is higher than 34.
+
+# Answering the Inferential Research Questions 
+
+Now, from above Exploratory Data Analysis we are interested in following two questions:
+
+  - Is there a significant difference of expenses between smokers and non-smokers? 
+  - Is there a significant difference of expenses between males and females?
+
+<br> 
+
+##### 1. Is there a significant difference of expenses between smokers and non-smokers? 
+
+$$H_0: \mu_{Smokers} = \mu_{Non-Smokers}$$
+$$H_1: \mu_{Smokers} \neq \mu_{Non-Smokers}$$
+
+Our Null hypothesis states that mean expenses of smokers is equal to mean expenses of non-smokers and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare mean of two groups and test results are as following:
+
+```{r}
+hypothesis_1 <- readr::read_csv('../../reports/tables/1.hypothesis_smokers.csv')
+kableExtra::kable(hypothesis_1)
+```
+
+The exact p-value is $`r hypothesis_1$p.value`$ which is very close to 0. However, while rendering the output to the table above it treats it as 0.
+
+As, we can observe that the p-values is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between smoker and no-smokers is not same. 
+
+##### 2. Is there a significant difference of expenses between males and females?
+
+$$H_0: \mu_{Males} = \mu_{Females}$$
+$$H_1: \mu_{Males} \neq \mu_{Females}$$
+
+Our Null hypothesis states that mean expenses of males is equal to mean expenses of females and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare mean of two groups and test results are as following:
+
+```{r}
+hypothesis_2 <- readr::read_csv('../../reports/tables/2.hypothesis_sex.csv')
+kableExtra::kable(hypothesis_2)
+```
+
+The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between Males and Females is not same. 
 
 # Build a predictive model 
 - description
