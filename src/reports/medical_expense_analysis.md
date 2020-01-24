@@ -257,12 +257,13 @@ two.sided
 The exact p-value is
 ![5.8894644\\times 10^{-103}](https://latex.codecogs.com/png.latex?5.8894644%5Ctimes%2010%5E%7B-103%7D
 "5.8894644\\times 10^{-103}") which is very close to 0. However, while
-rendering the output to the table above it treats it as 0. As, we can
-observe that the p-values is less than the significance level of
-![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%") hence, we
-can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
-hypothesis and conclude that we didn’t have enough evidence to say mean
-expenses between smoker and no-smokers are
+rendering the output to the table above it treats it as 0.
+
+As, we can observe that the p-values is less than the significance level
+of ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%") hence,
+we can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
+hypothesis and conclude that we have enough evidence to say mean
+expenses between smoker and no-smokers is not
 same.
 
 ##### 2\. Is there a significant difference of expenses between males and females?
@@ -426,8 +427,8 @@ The exact p-value is
 which is less than the significance level of
 ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%") hence, we
 can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
-hypothesis and conclude that we didn’t have enough evidence to say mean
-expenses between Males and Females are same.
+hypothesis and conclude that we have enough evidence to say mean
+expenses between Males and Females is not same.
 
 # Build a predictive model
 

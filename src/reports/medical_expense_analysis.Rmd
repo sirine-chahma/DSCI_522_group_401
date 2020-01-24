@@ -109,7 +109,8 @@ kableExtra::kable(hypothesis_1)
 ```
 
 The exact p-value is $`r hypothesis_1$p.value`$ which is very close to 0. However, while rendering the output to the table above it treats it as 0.
-As, we can observe that the p-values is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we didn't have enough evidence to say mean expenses between smoker and no-smokers are same. 
+
+As, we can observe that the p-values is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between smoker and no-smokers is not same. 
 
 ##### 2. Is there a significant difference of expenses between males and females?
 
@@ -123,7 +124,7 @@ hypothesis_2 <- readr::read_csv('../../reports/tables/2.hypothesis_sex.csv')
 kableExtra::kable(hypothesis_2)
 ```
 
-The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we didn't have enough evidence to say mean expenses between Males and Females are same. 
+The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between Males and Females is not same. 
 
 # Build a predictive model 
 - description
