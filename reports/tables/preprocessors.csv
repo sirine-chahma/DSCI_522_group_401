@@ -1,0 +1,3 @@
+,Numeric features,Categorical features
+0,PolynomialFeatures,OneHotEncoder
+1,StandardScaler,

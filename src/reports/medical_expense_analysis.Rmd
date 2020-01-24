@@ -42,14 +42,77 @@ set.seed(123)
 
 
 # Build a predictive model 
-- description
-- model selection
-- hyper-parameter tuning
+```{r load data analysis}
+models <- read.csv("../../reports/tables/regression_models_base_errors.csv")
+model_names <- c(colnames(models))
+model_names <- model_names[2 : length(model_names)]
+```
+
+In this data analysis project, we primarily focus on predicting the medical expenses given the details of a customer. We used Python for building the machine learnining model. The machine learning library, `sci-kit learn` was extensively used in this project to transform the data, feature engineering, feature selection, model selection, hyper-parameter tuning and model evaluation.
+
+### Preprocessing
+Firtly, the training data was loaded and response variable was separated from the training data. Then numerical and categorical features in the data are identified. A summary of various feature transformations done on the categorical and numerical features are given below.
+
+```{r feature transformations}
+transformations <- read.csv("../../reports/tables/preprocessors.csv")
+transformations <- transformations %>%
+                    select(Numeric.features, Categorical.features)
+kable(transformations)
+```
+
+After preprocessing and feature transformations, various regression models are fitted on the training data with the default parameters. Model with the best performance on the training and validation dataset is selected for
+hyper-parameter optimization. A summary of baseline performance by various regression models are givem below.
+
+```{r model selection}
+model_base <- read.csv("../../reports/tables/regression_models_base_errors.csv")
+model_base <- model_base %>% rename("Error Metrics"=X )
+kable(model_base)
+```
+
+Based on the above scores, DecisionTreeRegressor was selected as the final model and hyper-parameter tuning is done on it. In the data analysis pipeline, selection of the model from the base models is currently done manually. 
+
+### hyper-parameter tuning
+Hyper-parameter optimiation was performed using `GridSearchCV`. The best parameters obtained from hyper-parameter optimization are given below.
+
+```{r  hyper-parameter tuning}
+hp <- read.csv("../../reports/tables/hyperparameters.csv")
+hp <- hp %>% rename("Hyper-parameter"=X)
+kable(hp)
+```
 
 # Evaluate the predictive model 
-- model evaluation on train and test
-- results
-- regression plots
+
+###  model evaluation on train and test
+The final tuned DecisionTreeRegressor model was evaluated on both the training and test data using various regression metrics. A summary of the results are shown below.
+```{r  model evaluation}
+results <- read.csv("../../reports/tables/regression_errors.csv")
+results <- results %>% rename("Evaluation Metric"=X)
+
+# Mean absolute error on test data
+mae <- results %>%
+  select(test.data) %>%
+  slice(1)
+
+# Mean expense on test data
+test_data <- read.csv("../../data/processed/medical_cost_data_test.csv")
+mean_exp <- test_data %>%
+  pull() %>%
+  mean()
+
+kable(results)
+```
+
+A mean absolute error of `r mae` is not a very good score for the regression model. However, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses. The poor performance 
+of the model could be because of lack of enough data, lack of relevant features or the model is not tuned completely. Considering the limited time available for the project, we have not done thorough feature engineering, feature selection, model selection and hyper-parameter tuning. But this serves as a very good base model on which further improvements can be made. The goodness of fit of the regression model is analysed in the following section.
+
+### Goodness of fit
+```{r  plots}
+knitr::include_graphics("../../reports/figures/predicted_vs_actual_plot.png")
+knitr::include_graphics("../../reports/figures/residual_plot.png")
+
+```
+
+From the predicted Vs Actual plot, we can see ther are some errors in prediction at lower expenses. Overall the model does a pretty decent job of predicting the medical expenses given the patient information. 
 
 # References 
 
