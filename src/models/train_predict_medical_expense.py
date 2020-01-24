@@ -9,7 +9,8 @@ performance of the final tuned model, predicted vs actual plot and predicted
 vs residuals plot. In the current version, this script is not robust enough
 to select a model from the list of models and perform hyper-parameter tuning. 
 
-Usage: train_predict_medical_expense.py --training_data_file_path=<training_data_file_path> --test_data_file_path=<test_data_file_path> --results_file_location=<results_file_location>
+Usage: train_predict_medical_expense.py --training_data_file_path=<training_data_file_path>
+--test_data_file_path=<test_data_file_path> --results_file_location=<results_file_location>
  
 '''
 
