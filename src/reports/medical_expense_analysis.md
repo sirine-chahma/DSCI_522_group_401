@@ -1,13 +1,53 @@
 Medical Expense Data Analysis and Predictive Modeling
 ================
+author: Karanpal Singh, Sreejith Munthikodu, Sirine Chahma </br>
+2020/01/24
 
-# Summary of the data set
+# Summary
 
-  - summary of the data  
-  - prject proposal
-  - research quetions
+In this project, we attemps to build a regression model that will help
+us predict the medical expenses of a person regarding some information
+about this person (age, sex, number of children, if the person smokes
+and the region where the person is from). After trying different types
+of regressors (linear regression, decision tree regressor, knn
+regression, random forest regression and SVR), we found out that the
+decision tree regressor ended up being the best model regarding to our
+data. Our final regressor had satisfying results on an unseen data set,
+with a ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of
+0.826 on our test data set.
 
-# Exploratory analysis on the training data set
+# Introduction
+
+In this project, we attempt to build a predictive model that will answer
+the following question : “Given a person’s information, what would be
+his/her predicted medical expenses?”. Ansewering this question can be
+important for insurance compagnies who wants to evaluate the risk to
+insure a certain person regarding to his/her possible medical expenses.
+
+We also wanted to figure out if there is a significant difference of
+expenses between smokers and non-smokers, and between males and females.
+Therefore, we led two inferential studies asside in order to find an
+aswer to those questions.
+
+# Methods
+
+## Data
+
+The Data we are using for this analysis is used in the book Machine
+Learning with R by Brett Lantz(Lantz 2013); which is a book that
+provides an introduction to machine learning using R. All of these
+datasets are in the public domain. The data explain the cost of a small
+sample of USA population Medical Insurance Cost based on attributes like
+age, sex, number of children etc. Additional information about this data
+can be found
+[here](https://gist.github.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41).
+
+We didn’t have to clean this data because there were no outliers or
+missing values, as described in
+[this](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/notebooks/EDA.ipynb)
+jupyter notebook.
+
+## Exploratory analysis on the training data set
 
 To understand the nature of predictors with respect to `Medical
 Expenses` we will perform Exploratory Data Analysis and we will try to
@@ -443,3 +483,13 @@ expenses between Males and Females is not same.
   - regression plots
 
 # References
+
+<div id="refs" class="references">
+
+<div id="ref-source">
+
+Lantz, Brett. 2013. *Machine Learning with R*. PACKT Publishing.
+
+</div>
+
+</div>
