@@ -626,7 +626,7 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-0.0000
+0.000
 
 </td>
 
@@ -638,13 +638,13 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-958.4200
+937.1590
 
 </td>
 
 <td style="text-align:right;">
 
-8295.865
+8295.8650
 
 </td>
 
@@ -666,7 +666,7 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-2872.9420
+2857.608
 
 </td>
 
@@ -678,13 +678,13 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-2472.0340
+2483.5920
 
 </td>
 
 <td style="text-align:right;">
 
-8313.009
+8313.0090
 
 </td>
 
@@ -700,31 +700,31 @@ training\_time(s)
 
 <td style="text-align:right;">
 
-0.1521
+0.0592
 
 </td>
 
 <td style="text-align:right;">
 
-0.1882
+0.135
 
 </td>
 
 <td style="text-align:right;">
 
-0.0691
+0.0762
 
 </td>
 
 <td style="text-align:right;">
 
-1.3096
+1.3151
 
 </td>
 
 <td style="text-align:right;">
 
-0.260
+0.2478
 
 </td>
 
@@ -810,7 +810,7 @@ regressor\_\_min\_samples\_split
 
 <td style="text-align:right;">
 
-4
+9
 
 </td>
 
@@ -972,16 +972,15 @@ Explained\_variance\_score
 
 </table>
 
-A mean absolute error of 2289.5072862 is not a very good score for the
-regression model. However, considering the mean medical expense of
-1.337516810^{4}, we are not very far from predicting the accurate
-expenses. The poor performance of the model could be because of lack of
-enough data, lack of relevant features or the model is not tuned
-completely. Considering the limited time available for the project, we
-have not done thorough feature engineering, feature selection, model
-selection and hyper-parameter tuning. But this serves as a very good
-base model on which further improvements can be made. The goodness of
-fit of the regression model is analysed in the following
+A mean absolute error of 2289.5072862 can seem to be a very high score
+for the regression model. However, considering the mean medical expense
+of 1.337516810^{4}, we are not very far from predicting the accurate
+expenses. Moreover, when we take a look at the
+![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score, which is
+equal to 0.894, we realize that this score is pretty high, which means
+that our model explains most of the variability of our response data
+around its mean. The goodness of fit of the regression model is analysed
+in the following
 section.
 
 ### Goodness of fit
@@ -991,6 +990,17 @@ section.
 From the predicted Vs Actual plot, we can see ther are some errors in
 prediction at lower expenses. Overall the model does a pretty decent job
 of predicting the medical expenses given the patient information.
+
+# Limitations and Future Scope
+
+Regarding to the lack of enough data, the lack of relevant features and
+the fact that the model is not tuned completely, we think that our model
+could still be improved. Considering the limited time available for the
+project, we have not done thorough feature engineering, feature
+selection, model selection and hyper-parameter tuning. Those last points
+could be a good starting point for those who would like to improve our
+model. Overall, this serves as a very good base model on which further
+improvements can be made.
 
 # References
 
@@ -1006,7 +1016,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
+in Science & Engineering* 9 (3): 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -1047,7 +1057,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-The Open Journal. <https://doi.org/10.21105/joss.01057>.
+<https://doi.org/10.21105/joss.01057>.
 
 </div>
 
