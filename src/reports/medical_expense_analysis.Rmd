@@ -208,8 +208,7 @@ mean_exp <- test_data %>%
 kableExtra::kable(results)
 ```
 
-A mean absolute error of `r mae` is not a very good score for the regression model. However, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses. The poor performance 
-of the model could be because of lack of enough data, lack of relevant features or the model is not tuned completely. Considering the limited time available for the project, we have not done thorough feature engineering, feature selection, model selection and hyper-parameter tuning. But this serves as a very good base model on which further improvements can be made. The goodness of fit of the regression model is analysed in the following section.
+A mean absolute error of `r mae` can seem to be a very high score for the regression model. However, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses.  Moreover, when we take a look at the $R^2$ score, which is equal to `r round(regression_error$test_data[4], 3)`, we realize that this score is pretty high, which means that our model explains most of the variability of our response data around its mean. The goodness of fit of the regression model is analysed in the following section.
 
 ### Goodness of fit
 ```{r  plots}
@@ -219,6 +218,10 @@ knitr::include_graphics("../../reports/figures/residual_plot.png")
 ```
 
 From the predicted Vs Actual plot, we can see ther are some errors in prediction at lower expenses. Overall the model does a pretty decent job of predicting the medical expenses given the patient information. 
+
+# Limitations and Future Scope
+
+Regarding to the lack of enough data, the lack of relevant features and the fact that the model is not tuned completely, we think that our model could still be improved. Considering the limited time available for the project, we have not done thorough feature engineering, feature selection, model selection and hyper-parameter tuning. Those last points could be a good starting point for those who would like to improve our model. Overall, this serves as a very good base model on which further improvements can be made.
 
 # References 
 
