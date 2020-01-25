@@ -40,6 +40,8 @@ on the categorical and numerical features are given below.
 | PolynomialFeatures | OneHotEncoder        |
 | StandardScaler     |                      |
 
+### Model Selection
+
 After preprocessing and feature transformations, various regression
 models are fitted on the training data with the default parameters.
 Model with the best performance on the training and validation dataset
