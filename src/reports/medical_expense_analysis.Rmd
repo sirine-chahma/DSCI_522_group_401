@@ -1,6 +1,12 @@
 ---
 title: "Medical Expense Data Analysis and Predictive Modeling"
-output: github_document
+author: "author: Karanpal	Singh, Sreejith	Munthikodu, Sirine	Chahma </br>"
+date: "2020/01/24"
+#always_allow_html: true
+output: 
+  github_document:
+       pandoc_args: --webtex
+bibliography: ../../docs/medical_expense_refs.bib
 
 ---
 
@@ -16,30 +22,130 @@ theme_set(theme_minimal())
 set.seed(123)
 ```
 
-# Summary of the data set
+
 
 ```{r load data}
-# code template  
+regression_error <- read.csv("../../reports/tables/regression_errors.csv")
+
 ```
 
 
-- summary of the data  
-- prject proposal
-- research quetions
+# Summary
+
+In this project, we attemps to build a regression model that will help us predict the medical expenses of a person regarding some information about this person (age, sex, number of children, if the person smokes and the region where the person is from). After trying different types of regressors (linear regression, decision tree regressor, knn regression, random forest regression and SVR), we found out that the decision tree regressor ended up being the best model regarding to our data. Our final regressor had satisfying results on an unseen data set, with a $R^2$ score of `r round(regression_error$test_data[4], 3)` on our test data set.
+
+# Introduction
+
+In this project, we attempt to build a predictive model that will answer the following question : "Given a person's information, what would be his/her predicted medical expenses?". Ansewering this question can be important for insurance compagnies who wants to evaluate the risk to insure a certain person regarding to his/her possible medical expenses. 
+
+We also wanted to figure out if there is a significant difference of expenses between smokers and non-smokers, and between males and females. Therefore, we led two inferential studies asside in order to find an aswer to those questions.
+
+# Methods
+
+## Data
+The Data we are using for this analysis is used in the book Machine Learning with R by Brett Lantz[@source]; which is a book that provides an introduction to machine learning using R. All of these datasets are in the public domain. The data explain the cost of a small sample of USA population Medical Insurance Cost based on attributes like age, sex, number of children etc. Additional information about this data can be found [here](https://gist.github.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41).
+
+We didn't have to clean this data because there were no outliers or missing values, as described in [this](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/notebooks/EDA.ipynb) jupyter notebook.
+
+The R and Python programming languages [@R] [@Python] and the following R and Python packages were used to split the data and study the missing values and the outliers : docopt [@docopt], tidyverse[@tidyverse], testthat [@testthat], pandas [@mckinney-proc-scipy-2010], numpy [@doi:10.1109/MCSE.2011.37], matplotlib and seaborn [@Hunter:2007].
 
 
-# Exploratory analysis on the training data set 
-  
-- description
-- plots
-- observatons
+## Exploratory analysis on the training data set 
 
-# Answer the inferential research questions 
+To understand the nature of predictors with respect to `Medical Expenses` we will perform Exploratory Data Analysis and we will try to understand if there are some intresting behaviours. To do so, we will use the following python packages :  altair [@Altair2018], matplotlib and seaborn [@Hunter:2007], scikit-learn [@scikit-learn].
 
-- probelm statement
-- hypothesis test
-- inference
+##### 1. Let's see how `Medical Expenses` are changing with `Age`
 
+<html>
+<img src = '../../reports/figures/1.Expenses_VS_Age.png'>
+</html>
+
+It can be observed that `Medical Expense` of people is increasing, as `Age` increases.
+
+##### 2. Let's see how  `Medical Expenses` are changing with `BMI (Body Mass Index)`
+
+<html>
+<img src = '../../reports/figures/2.Expenses_VS_BMI.png'>
+</html>
+
+The highest expenses seem to occur for people who have a higher BMI.
+
+##### 3. Let's see how much money males and females spending on medical treatments between 18-64 Years
+
+<html>
+<img src = '../../reports/figures/3.Expenses_VS_Gender.png'>
+</html>
+
+The expenses seem to grow with age for both males and females. It looks like Males in their **20's & 60's** tend to pay more on their `Medical Expenses` than Females. Females in their **40's** are paying more than Males on their `Medical Expenses`.
+
+
+##### 4. Let's see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
+
+We expect expenditures by smokers should be higher than the non smokers.
+>>>>>>> upstream/master
+
+<html>
+<img src = '../../reports/figures/4.Expenses_VS_Smoker.png'>
+</html>
+
+**Interesting!!!** - As expected, Health expenses of smokers are a lot higher than the one of non-smokers.
+
+##### 5. Let's see how `BMI` is changing with Age for Males and Females
+
+We are expecting both male and females have usual `BMI`.
+
+<html>
+<img src = '../../reports/figures/5.BMI_VS_AGE.png'>
+</html>
+
+The `BMI` doesn't seem to vary depending on the age nor the sex.
+
+##### 6. Let's see the Male & Female Expenses Over BMI
+
+<html>
+<img src = '../../reports/figures/6.EXP_VS_BMI.png'>
+</html>
+
+The highest expenses seem to occur for people from both genders who have a BMI that is higher than 34.
+
+## Answering the Inferential Research Questions 
+
+Now, from above Exploratory Data Analysis we are interested in following two questions:
+
+  - Is there a significant difference of expenses between smokers and non-smokers? 
+  - Is there a significant difference of expenses between males and females?
+
+<br> 
+
+##### 1. Is there a significant difference of expenses between smokers and non-smokers? 
+
+$$H_0: \mu_{Smokers} = \mu_{Non-Smokers}$$
+$$H_1: \mu_{Smokers} \neq \mu_{Non-Smokers}$$
+
+Our Null hypothesis states that mean expenses of smokers is equal to mean expenses of non-smokers and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare mean of two groups and test results are as following:
+
+```{r}
+hypothesis_1 <- readr::read_csv('../../reports/tables/1.hypothesis_smokers.csv')
+kableExtra::kable(hypothesis_1)
+```
+
+The exact p-value is $`r hypothesis_1$p.value`$ which is very close to 0. However, while rendering the output to the table above it treats it as 0.
+
+As, we can observe that the p-values is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between smoker and no-smokers is not same. 
+
+##### 2. Is there a significant difference of expenses between males and females?
+
+$$H_0: \mu_{Males} = \mu_{Females}$$
+$$H_1: \mu_{Males} \neq \mu_{Females}$$
+
+Our Null hypothesis states that mean expenses of males is equal to mean expenses of females and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare mean of two groups and test results are as following:
+
+```{r}
+hypothesis_2 <- readr::read_csv('../../reports/tables/2.hypothesis_sex.csv')
+kableExtra::kable(hypothesis_2)
+```
+
+The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between Males and Females is not same. 
 
 # Build a predictive model 
 ```{r load data analysis}

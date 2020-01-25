@@ -124,8 +124,8 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
     train_errors = get_error(grid, X, y)
     test_errors = get_error(grid, X_test, y_test)
 
-    final_results = {"training data" : train_errors,
-                    "test data" : test_errors}
+    final_results = {"training_data" : train_errors,
+                    "test_data" : test_errors}
     results_df = pd.DataFrame(final_results)
     results_df.index = ["Mean Absolute Error", "Mean Squared Error", "Root Mean Squared Error", "R2_score", "Explained_variance_score"]
     print("Results: \n")

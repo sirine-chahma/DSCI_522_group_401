@@ -15,6 +15,8 @@ Options:
 library(tidyverse)
 library(testthat)
 library(docopt)
+library(broom)
+
 set.seed(123)
 
 test_smokers <- 0
