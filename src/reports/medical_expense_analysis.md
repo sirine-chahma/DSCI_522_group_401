@@ -14,7 +14,7 @@ regression, random forest regression and SVR), we found out that the
 decision tree regressor ended up being the best model regarding to our
 data. Our final regressor had satisfying results on an unseen data set,
 with a ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of
-0.826 on our test data set.
+0.894 on our test data set.
 
 # Introduction
 
@@ -496,10 +496,63 @@ from the training data. Then numerical and categorical features in the
 data are identified. A summary of various feature transformations done
 on the categorical and numerical features are given below.
 
-| Numeric.features   | Categorical.features |
-| :----------------- | :------------------- |
-| PolynomialFeatures | OneHotEncoder        |
-| StandardScaler     |                      |
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+Numeric.features
+
+</th>
+
+<th style="text-align:left;">
+
+Categorical.features
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+PolynomialFeatures
+
+</td>
+
+<td style="text-align:left;">
+
+OneHotEncoder
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+StandardScaler
+
+</td>
+
+<td style="text-align:left;">
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 ### Model Selection
 
@@ -507,14 +560,179 @@ After preprocessing and feature transformations, various regression
 models are fitted on the training data with the default parameters.
 Model with the best performance on the training and validation dataset
 is selected for hyper-parameter optimization. A summary of baseline
-performance by various regression models are givem
-below.
+performance by various regression models are givem below.
 
-| Error Metrics                   | Linear.Regression | Decision.Tree.Regressor | KNN.Regressor | Random.Forest.Regressor | SVR..Support.Vector.Regressor. |
-| :------------------------------ | ----------------: | ----------------------: | ------------: | ----------------------: | -----------------------------: |
-| Mean absolute error, training   |         4062.5430 |                  0.0000 |     2739.4530 |                943.1160 |                       8295.865 |
-| Mean absolute error, validation |         4102.0070 |               2887.3280 |     3654.2210 |               2463.0710 |                       8313.009 |
-| training\_time(s)               |            0.0646 |                  0.1348 |        0.0765 |                  1.2972 |                          0.248 |
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+Error Metrics
+
+</th>
+
+<th style="text-align:right;">
+
+Linear.Regression
+
+</th>
+
+<th style="text-align:right;">
+
+Decision.Tree.Regressor
+
+</th>
+
+<th style="text-align:right;">
+
+KNN.Regressor
+
+</th>
+
+<th style="text-align:right;">
+
+Random.Forest.Regressor
+
+</th>
+
+<th style="text-align:right;">
+
+SVR..Support.Vector.Regressor.
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+Mean absolute error, training
+
+</td>
+
+<td style="text-align:right;">
+
+4062.5430
+
+</td>
+
+<td style="text-align:right;">
+
+0.0000
+
+</td>
+
+<td style="text-align:right;">
+
+2739.4530
+
+</td>
+
+<td style="text-align:right;">
+
+958.4200
+
+</td>
+
+<td style="text-align:right;">
+
+8295.865
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Mean absolute error, validation
+
+</td>
+
+<td style="text-align:right;">
+
+4102.0070
+
+</td>
+
+<td style="text-align:right;">
+
+2872.9420
+
+</td>
+
+<td style="text-align:right;">
+
+3654.2210
+
+</td>
+
+<td style="text-align:right;">
+
+2472.0340
+
+</td>
+
+<td style="text-align:right;">
+
+8313.009
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+training\_time(s)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1521
+
+</td>
+
+<td style="text-align:right;">
+
+0.1882
+
+</td>
+
+<td style="text-align:right;">
+
+0.0691
+
+</td>
+
+<td style="text-align:right;">
+
+1.3096
+
+</td>
+
+<td style="text-align:right;">
+
+0.260
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 Based on the above scores, DecisionTreeRegressor was selected as the
 final model and hyper-parameter tuning is done on it. In the data
@@ -526,11 +744,81 @@ currently done manually.
 Hyper-parameter optimiation was performed using `GridSearchCV`. The best
 parameters obtained from hyper-parameter optimization are given below.
 
-| Hyper-parameter                       | Best.parameter |
-| :------------------------------------ | -------------: |
-| preprocessor\_\_num\_\_poly\_\_degree |              2 |
-| regressor\_\_max\_depth               |              4 |
-| regressor\_\_min\_samples\_split      |              4 |
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+Hyper-parameter
+
+</th>
+
+<th style="text-align:right;">
+
+Best.parameter
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+preprocessor\_\_num\_\_poly\_\_degree
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+regressor\_\_max\_depth
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+regressor\_\_min\_samples\_split
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 # Evaluate the predictive model
 
@@ -540,17 +828,153 @@ The final tuned DecisionTreeRegressor model was evaluated on both the
 training and test data using various regression metrics. A summary of
 the results are shown below.
 
-| Evaluation Metric          | training.data |    test.data |
-| :------------------------- | ------------: | -----------: |
-| Mean Absolute Error        |  2.336006e+03 | 2.780371e+03 |
-| Mean Squared Error         |  1.739013e+07 | 2.506713e+07 |
-| Root Mean Squared Error    |  4.170148e+03 | 5.006708e+03 |
-| R2\_score                  |  8.821358e-01 | 8.261748e-01 |
-| Explained\_variance\_score |  8.821358e-01 | 8.264199e-01 |
+<table>
 
-A mean absolute error of 2780.3705362 is not a very good score for the
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+Evaluation Metric
+
+</th>
+
+<th style="text-align:right;">
+
+training\_data
+
+</th>
+
+<th style="text-align:right;">
+
+test\_data
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+Mean Absolute Error
+
+</td>
+
+<td style="text-align:right;">
+
+2.336006e+03
+
+</td>
+
+<td style="text-align:right;">
+
+2.289507e+03
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Mean Squared Error
+
+</td>
+
+<td style="text-align:right;">
+
+1.739013e+07
+
+</td>
+
+<td style="text-align:right;">
+
+1.510393e+07
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Root Mean Squared Error
+
+</td>
+
+<td style="text-align:right;">
+
+4.170148e+03
+
+</td>
+
+<td style="text-align:right;">
+
+3.886378e+03
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+R2\_score
+
+</td>
+
+<td style="text-align:right;">
+
+8.821358e-01
+
+</td>
+
+<td style="text-align:right;">
+
+8.942746e-01
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Explained\_variance\_score
+
+</td>
+
+<td style="text-align:right;">
+
+8.821358e-01
+
+</td>
+
+<td style="text-align:right;">
+
+8.945348e-01
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+A mean absolute error of 2289.5072862 is not a very good score for the
 regression model. However, considering the mean medical expense of
-1.322343110^{4}, we are not very far from predicting the accurate
+1.337516810^{4}, we are not very far from predicting the accurate
 expenses. The poor performance of the model could be because of lack of
 enough data, lack of relevant features or the model is not tuned
 completely. Considering the limited time available for the project, we
@@ -582,7 +1006,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3): 90–95.
+in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -623,7 +1047,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-<https://doi.org/10.21105/joss.01057>.
+The Open Journal. <https://doi.org/10.21105/joss.01057>.
 
 </div>
 

@@ -82,7 +82,6 @@ The expenses seem to grow with age for both males and females. It looks like Mal
 ##### 4. Let's see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
 We expect expenditures by smokers should be higher than the non smokers.
->>>>>>> upstream/master
 
 <html>
 <img src = '../../reports/figures/4.Expenses_VS_Smoker.png'>
@@ -163,7 +162,7 @@ Firtly, the training data was loaded and response variable was separated from th
 transformations <- read.csv("../../reports/tables/preprocessors.csv")
 transformations <- transformations %>%
                     select(Numeric.features, Categorical.features)
-kable(transformations)
+kableExtra::kable(transformations)
 ```
 
 ### Model Selection
@@ -173,7 +172,7 @@ hyper-parameter optimization. A summary of baseline performance by various regre
 ```{r model selection}
 model_base <- read.csv("../../reports/tables/regression_models_base_errors.csv")
 model_base <- model_base %>% rename("Error Metrics"=X )
-kable(model_base)
+kableExtra::kable(model_base)
 ```
 
 Based on the above scores, DecisionTreeRegressor was selected as the final model and hyper-parameter tuning is done on it. In the data analysis pipeline, selection of the model from the base models is currently done manually. 
@@ -184,7 +183,7 @@ Hyper-parameter optimiation was performed using `GridSearchCV`. The best paramet
 ```{r  hyper-parameter tuning}
 hp <- read.csv("../../reports/tables/hyperparameters.csv")
 hp <- hp %>% rename("Hyper-parameter"=X)
-kable(hp)
+kableExtra::kable(hp)
 ```
 
 # Evaluate the predictive model 
@@ -197,7 +196,7 @@ results <- results %>% rename("Evaluation Metric"=X)
 
 # Mean absolute error on test data
 mae <- results %>%
-  select(test.data) %>%
+  select(test_data) %>%
   slice(1)
 
 # Mean expense on test data
@@ -206,7 +205,7 @@ mean_exp <- test_data %>%
   pull() %>%
   mean()
 
-kable(results)
+kableExtra::kable(results)
 ```
 
 A mean absolute error of `r mae` is not a very good score for the regression model. However, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses. The poor performance 
