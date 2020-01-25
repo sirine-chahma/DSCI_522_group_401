@@ -1,4 +1,4 @@
-,linear_regression,decision_tree_regressor,knn_regression,rf_regression,SVR
-"Mean absolute error, training",4062.543,0.0,2739.453,954.098,8295.865
-"Mean absolute error, test",4102.007,2805.869,3654.221,2491.292,8313.009
-training_time(s),0.196,0.105,0.107,1.639,0.241
+,Linear Regression,Decision Tree Regressor,KNN Regressor,Random Forest Regressor,SVR (Support Vector Regressor)
+"Mean absolute error, training",4062.543,0.0,2739.453,937.159,8295.865
+"Mean absolute error, validation",4102.007,2857.608,3654.221,2483.592,8313.009
+training_time(s),0.0592,0.135,0.0762,1.3151,0.2478

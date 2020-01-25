@@ -19,7 +19,25 @@ Throughout this project we also want to investigate two more inferential sub-que
 
 ### Analysis Plan
 
- > For our main question, we will be running several regression models including linear regression, decision tree and random forest. We will pick the best model for prediciting the medical expenses.
+ > For our predictive modeling, the analysis plan is summarised below.  
+    - Transform numeric features using PolynomialFeatures and StandardScaler in sci-kit  learn.  
+    - Transform categorical features using OneHotEncoder in sci-kit learn.  
+    - Get base performance using the following regression models.  
+        1. Linear Regression  
+        2. KNN Regressor  
+        3. DecisionTreeRegressor  
+        4. RandomForestRegressor  
+        5. SVR(SupportVectorRegressor)  
+    - Choose a model from above based on performance  
+    - Perform hyper-parameter tuning  
+    - Evaluate the model using the following metrics  
+        1. Mean absolute error  
+        2. Mean squared error  
+        3. Root mean squared error  
+        4. R2 Score  
+        5. Explained varoance score  
+    - Plot predicted expense vs actual expense plot and residual plot   
+        
  >
  > For the sub-questions, we will be running two two-sided hypothesis tests, comparing the means of the different groups under study. 
 
@@ -31,9 +49,15 @@ Throughout this project we also want to investigate two more inferential sub-que
 ### Results of Analysis
 Suggest how you would share the results of your analysis as one or more tables and/or figures.
 
-> - R-squared, ajusted R-squared values or any relevant metric
-> - Best fit line plot (depending on the features that will be significant)
-> - p-values for inferential sub-questions
+> - Evaluation metrics  
+        1. Mean absolute error    
+        2. Mean squared error    
+        3. Root mean squared error    
+        4. R2 Score    
+        5. Explained varoance score    
+> - Best fit line plot   
+        1. Predicted expense vs Actual expense plot and residual plot    
+> - p-values for inferential sub-questions  
 
 ### Usage
 
@@ -50,4 +74,9 @@ python eda.py --input_data=../../data/processed/medical_cost_data_train.csv --ou
 ```{}
 # Inferences
 Rscript src/inferences/inferences.R --input_file=data/original/medical_cost_data.csv --output_dir=reports/tables/
+```
+
+```{}
+# Predictive Modeling
+python train_predict_medical_expense.py --training_data_file_path="../../data/processed/medical_cost_data_train.csv" --test_data_file_path="../../data/processed/medical_cost_data_test.csv" --results_file_location="../../reports"
 ```

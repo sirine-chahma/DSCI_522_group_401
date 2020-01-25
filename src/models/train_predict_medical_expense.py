@@ -28,7 +28,6 @@ import os
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.neighbors import KNeighborsRegressor
@@ -66,14 +65,19 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
                                     ("num", numeric_transformer, numeric_features),
                                     ("cat", categoric_transformer, categoric_features)])
 
+    # Save preprocessing details
+    preprocessor_df = pd.DataFrame({"Numeric features" : ["PolynomialFeatures", "StandardScaler"],
+                                    "Categorical features" : ["OneHotEncoder", ""]})
+    preprocessor_df.to_csv(os.path.join(results_file_location, "tables/preprocessors.csv"))
+
     # Try various regression models
     print("Trying various regression models...\n")
     models = {
-    "linear_regression" : LinearRegression(),
-    "decision_tree_regressor" : DecisionTreeRegressor(),
-    "knn_regression" : KNeighborsRegressor(),
-    "rf_regression" : RandomForestRegressor(n_estimators=100),
-    "SVR" : SVR(gamma="scale")   
+    "Linear Regression" : LinearRegression(),
+    "Decision Tree Regressor" : DecisionTreeRegressor(),
+    "KNN Regressor" : KNeighborsRegressor(),
+    "Random Forest Regressor" : RandomForestRegressor(n_estimators=100),
+    "SVR (Support Vector Regressor)" : SVR(gamma="scale")   
     }
 
     results_df = try_models(models, X, y, preprocessor)
@@ -100,7 +104,11 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
                         scoring="neg_mean_absolute_error")
     grid.fit(X, y)
 
-    print(f"Best parameters are : {grid.best_params_}\n")
+    # Save best parameters
+    best_params_df = pd.DataFrame.from_dict(grid.best_params_, "index")
+    best_params_df.columns = ["Best parameter"]
+    print(f"Best parameters are : {best_params_df}\n")
+    best_params_df.to_csv(os.path.join(results_file_location, "tables/hyperparameters.csv"))
 
     # Load the test data
     print("Loading preprocessed test data...\n")
@@ -230,7 +238,7 @@ def try_models(models, X_train, y_train, preprocessor):
         tr_err = mean_absolute_error(y_train, reg.predict(X_train))
         elapsed_time = time.time() - t
         results_dict[model_name] = [np.round(tr_err,3), np.round(validation_error,3), np.round(elapsed_time,4)]
-        indices = ["Mean absolute error, training", "Mean absolute error, test", "training_time(s)"]
+        indices = ["Mean absolute error, training", "Mean absolute error, validation", "training_time(s)"]
     results_df = pd.DataFrame(results_dict)
     results_df.index = indices
 
