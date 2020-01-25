@@ -47,11 +47,21 @@ missing values, as described in
 [this](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/notebooks/EDA.ipynb)
 jupyter notebook.
 
+The R and Python programming languages (R Core Team 2019) (Van Rossum
+and Drake 2009) and the following R and Python packages were used to
+split the data and study the missing values and the outliers : docopt
+(de Jonge 2018), tidyverse(Wickham 2017), testthat (Wickham 2011),
+pandas (McKinney 2010), numpy (Walt, Colbert, and Varoquaux 2011),
+matplotlib and seaborn (Hunter 2007).
+
 ## Exploratory analysis on the training data set
 
 To understand the nature of predictors with respect to `Medical
 Expenses` we will perform Exploratory Data Analysis and we will try to
-understand if there are some intresting behaviours.
+understand if there are some intresting behaviours. To do so, we will
+use the following python packages : altair (VanderPlas et al. 2018),
+matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
+2011).
 
 ##### 1\. Let’s see how `Medical Expenses` are changing with `Age`
 
@@ -126,7 +136,7 @@ The `BMI` doesn’t seem to vary depending on the age nor the sex.
 The highest expenses seem to occur for people from both genders who have
 a BMI that is higher than 34.
 
-# Answering the Inferential Research Questions
+## Answering the Inferential Research Questions
 
 Now, from above Exploratory Data Analysis we are interested in following
 two questions:
@@ -486,9 +496,89 @@ expenses between Males and Females is not same.
 
 <div id="refs" class="references">
 
+<div id="ref-docopt">
+
+de Jonge, Edwin. 2018. *Docopt: Command-Line Interface Specification
+Language*. <https://CRAN.R-project.org/package=docopt>.
+
+</div>
+
+<div id="ref-Hunter:2007">
+
+Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
+in Science & Engineering* 9 (3): 90–95.
+<https://doi.org/10.1109/MCSE.2007.55>.
+
+</div>
+
 <div id="ref-source">
 
 Lantz, Brett. 2013. *Machine Learning with R*. PACKT Publishing.
+
+</div>
+
+<div id="ref-mckinney-proc-scipy-2010">
+
+McKinney, Wes. 2010. “Data Structures for Statistical Computing in
+Python.” In *Proceedings of the 9th Python in Science Conference*,
+edited by Stéfan van der Walt and Jarrod Millman, 51–56.
+
+</div>
+
+<div id="ref-scikit-learn">
+
+Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
+Grisel, M. Blondel, et al. 2011. “Scikit-Learn: Machine Learning in
+Python.” *Journal of Machine Learning Research* 12: 2825–30.
+
+</div>
+
+<div id="ref-R">
+
+R Core Team. 2019. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-Altair2018">
+
+VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
+Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
+Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
+Visualizations for Python.” *Journal of Open Source Software*, December.
+<https://doi.org/10.21105/joss.01057>.
+
+</div>
+
+<div id="ref-Python">
+
+Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
+Scotts Valley, CA: CreateSpace.
+
+</div>
+
+<div id="ref-doi:10.1109/MCSE.2011.37">
+
+Walt, Stefan van der, S. Chris Colbert, and Gael Varoquaux. 2011. “The
+Numpy Array: A Structure for Efficient Numerical Computation.”
+*Computing in Science & Engineering* 13 (2): 22–30.
+<https://doi.org/10.1109/MCSE.2011.37>.
+
+</div>
+
+<div id="ref-testthat">
+
+Wickham, Hadley. 2011. “Testthat: Get Started with Testing.” *The R
+Journal* 3: 5–10.
+<https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf>.
+
+</div>
+
+<div id="ref-tidyverse">
+
+———. 2017. *Tidyverse: Easily Install and Load the ’Tidyverse’*.
+<https://CRAN.R-project.org/package=tidyverse>.
 
 </div>
 

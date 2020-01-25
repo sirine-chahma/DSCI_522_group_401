@@ -47,11 +47,12 @@ The Data we are using for this analysis is used in the book Machine Learning wit
 
 We didn't have to clean this data because there were no outliers or missing values, as described in [this](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/notebooks/EDA.ipynb) jupyter notebook.
 
-The R and Python programming languages [@R] [@Python] and the following R and Python packages were used to split the data and study the missing values and the outliers : docopt [@docopt], tidyverse[@tydiverse], testthat [@testthat], pandas [@mckinney-proc-scipy-2010], numpy [@doi:10.1109/MCSE.2011.37], altair [@Altair2018], matplotlib and seaborn [@Hunter:2007].
+The R and Python programming languages [@R] [@Python] and the following R and Python packages were used to split the data and study the missing values and the outliers : docopt [@docopt], tidyverse[@tidyverse], testthat [@testthat], pandas [@mckinney-proc-scipy-2010], numpy [@doi:10.1109/MCSE.2011.37], matplotlib and seaborn [@Hunter:2007].
+
 
 ## Exploratory analysis on the training data set 
 
-To understand the nature of predictors with respect to `Medical Expenses` we will perform Exploratory Data Analysis and we will try to understand if there are some intresting behaviours.
+To understand the nature of predictors with respect to `Medical Expenses` we will perform Exploratory Data Analysis and we will try to understand if there are some intresting behaviours. To do so, we will use the following python packages :  altair [@Altair2018], matplotlib and seaborn [@Hunter:2007], scikit-learn [@scikit-learn].
 
 ##### 1. Let's see how `Medical Expenses` are changing with `Age`
 
