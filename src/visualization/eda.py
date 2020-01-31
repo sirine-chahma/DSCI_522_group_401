@@ -30,6 +30,22 @@ def main(input_data, output_location):
 
     training_df = X_train
     training_df['charges'] = y_train
+    
+    #plotting the correlation between features
+    cor = X_train.corr()
+    cor = cor.reset_index()
+    cor = pd.melt(cor, id_vars="index")
+    cor_map = alt.Chart(cor).mark_rect().encode(
+    alt.X('index:O', title=''),
+    alt.Y('variable:O', title=''),
+    alt.Color('value:Q',scale = alt.Scale(domain=[0, 1], scheme = 'purplered'))
+    ).properties(title="Correlation map of the features",
+            width = 300,
+            height = 300
+    )
+    
+    # saving results as png
+    cor_map.save(output_location + '/0.correlation.png')
 
     # plotting relationship between Medical Expenses over Age
     meoa = alt.Chart(training_df.groupby(['age']).mean().reset_index()).mark_line(point = True).encode(

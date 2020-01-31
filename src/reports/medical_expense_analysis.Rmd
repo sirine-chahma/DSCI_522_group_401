@@ -89,17 +89,8 @@ We expect expenditures by smokers should be higher than the non smokers.
 
 **Interesting!!!** - As expected, Health expenses of smokers are a lot higher than the one of non-smokers.
 
-##### 5. Let's see how `BMI` is changing with Age for Males and Females
 
-We are expecting both male and females have usual `BMI`.
-
-<html>
-<img src = '../../reports/figures/5.BMI_VS_AGE.png'>
-</html>
-
-The `BMI` doesn't seem to vary depending on the age nor the sex.
-
-##### 6. Let's see the Male & Female Expenses Over BMI
+##### 5. Let's see the Male & Female Expenses Over BMI
 
 <html>
 <img src = '../../reports/figures/6.EXP_VS_BMI.png'>
