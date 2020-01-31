@@ -45,6 +45,11 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, explained_v
 def main(training_data_file_path, test_data_file_path, results_file_location):
     """The main function."""
 
+    # Test all functions
+    test_get_cat_num_features()
+    test_try_models()
+    test_get_error()
+
     # Load training data
     print("\nLoading preprocessed training data...\n")
     medical_data = pd.read_csv(training_data_file_path)
@@ -140,14 +145,24 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
     prediction_df = pd.DataFrame({"y_actual" : y_test, "y_predicted" : y_test_predicted, "residuals" : y_test - y_test_predicted})
 
     # Predicted vs actual
-    predicted_vs_actual_plot = alt.Chart(prediction_df).mark_circle(size=60, color="green", opacity=0.4).encode(
+    p1 = alt.Chart(prediction_df).mark_circle(size=60, color="green", opacity=0.4).encode(
                                     alt.X('y_predicted', title = "Predicted Medical Expense ($)"),
                                     alt.Y('y_actual', title = "Actual Medical Expense ($)") 
                                     ).properties(
                                     title = "Predicted Vs Actual",
                                     width = 700,
                                     height = 300
-                                    ).configure_axis(
+                                    )
+
+    p2 = alt.Chart(prediction_df).mark_line(color="red", opacity=1).encode(
+                                    alt.X('y_actual'),
+                                    alt.Y('y_actual') 
+                                    ).properties(                             
+                                    width = 700,
+                                    height = 300
+                                    )
+
+    predicted_vs_actual_plot = (p1 + p2).configure_axis(
                                     labelFontSize = 20,
                                     titleFontSize = 20
                                     ).configure_title(
@@ -200,6 +215,18 @@ def get_cat_num_features(x):
 
     return categoric_features, numeric_features
 
+def test_get_cat_num_features():
+    """
+    Test for get_cat_num_features() function
+    """
+    # Generate some test data
+    X = pd.DataFrame({"cat" : ["a", "b", "c"],
+                    "num" : [1, 2, 3]})
+
+    cat, num = get_cat_num_features(X)
+    # Ensure output dimensions are as expected
+    assert(len(cat) == 1)
+    assert(len(num) == 1)
 
 def try_models(models, X_train, y_train, preprocessor):
     """ Fits different regression models on the given
@@ -244,6 +271,29 @@ def try_models(models, X_train, y_train, preprocessor):
 
     return results_df
 
+def test_try_models():
+    """
+    Test for try_models() function
+    """
+    models = {"lm" : LinearRegression()}
+    # Generate some test data
+    X = pd.DataFrame({"num1" : [1, 2, 3, 4, 5],
+                    "num2" : [10, 26, 3, 18, 11],
+                    "cat" : ["a", "b", "a", "b", "a"]})
+    y = np.array([10, 2, 13, 10, 11])
+
+    numeric_transformer = Pipeline(steps=[("poly" , PolynomialFeatures(degree=1)),
+                                        ("scaler", StandardScaler())])
+    categoric_transformer = Pipeline(steps=[("ohe", OneHotEncoder())])
+
+    preprocessor = ColumnTransformer(transformers = [
+                                    ("num", numeric_transformer, ["num1", "num2"]),
+                                    ("cat", categoric_transformer, ["cat"])])
+
+    df = try_models(models, X, y, preprocessor)
+    # Ensure output shape is as expected
+    assert(df.shape == (3, 1))
+
 
 def get_error(model, X, y):
     """ Evaluates various regression error metrics
@@ -270,6 +320,18 @@ def get_error(model, X, y):
     errors = [mean_abs_error, mean_sqrd_error, root_mean_sqrd_error, r2, exp_var_score]
 
     return errors
+
+def test_get_error():
+    model = LinearRegression()
+    # Generate some test data
+    X = pd.DataFrame({"num1" : [1, 2, 3, 4, 5],
+                    "num2" : [10, 26, 3, 18, 11]})
+    y = np.array([10, 2, 13, 10, 11])
+
+    model.fit(X, y)
+    errors = get_error(model, X, y)
+    # Ensure output dimension is as expected
+    assert len(errors) == 5
 
 
 if __name__ == "__main__":
