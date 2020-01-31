@@ -11,6 +11,7 @@ Usage: get_data.py --url=<url> --file_location=<file_location>
 
 import requests
 from docopt import docopt
+import pandas as pd
 
 opt = docopt(__doc__)
 
@@ -19,7 +20,14 @@ def main(url, file_location):
     r = requests.get(url)
     with open(file_location, "wb") as f:
         f.write(r.content) 
+
+    test(file_location)
+
+def test(file_location):
+    df = pd.read_csv(file_location)
+    assert df.shape[0] != 0
     print(f"file successfully saved to {file_location}")
+
 
 if __name__ == "__main__":
     main(opt["--url"], opt["--file_location"])
