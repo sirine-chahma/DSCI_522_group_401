@@ -6,8 +6,8 @@ date: "2020/01/24"
 output: 
   github_document:
        pandoc_args: --webtex
-bibliography: ../../docs/medical_expense_refs.bib
-
+bibliography: ../docs/medical_expense_refs.bib
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -25,7 +25,7 @@ set.seed(123)
 
 
 ```{r load data}
-regression_error <- read.csv("../../reports/tables/regression_errors.csv")
+regression_error <- read.csv("../reports/tables/regression_errors.csv")
 
 ```
 
@@ -57,7 +57,7 @@ To understand the nature of predictors with respect to `Medical Expenses` we wil
 ##### 1. Let's see how `Medical Expenses` are changing with `Age`
 
 <html>
-<img src = '../../reports/figures/1.Expenses_VS_Age.png'>
+<img src = '../reports/figures/1.Expenses_VS_Age.png'>
 </html>
 
 It can be observed that `Medical Expense` of people is increasing, as `Age` increases.
@@ -65,7 +65,7 @@ It can be observed that `Medical Expense` of people is increasing, as `Age` incr
 ##### 2. Let's see how  `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
 <html>
-<img src = '../../reports/figures/2.Expenses_VS_BMI.png'>
+<img src = '../reports/figures/2.Expenses_VS_BMI.png'>
 </html>
 
 The highest expenses seem to occur for people who have a higher BMI.
@@ -73,7 +73,7 @@ The highest expenses seem to occur for people who have a higher BMI.
 ##### 3. Let's see how much money males and females spending on medical treatments between 18-64 Years
 
 <html>
-<img src = '../../reports/figures/3.Expenses_VS_Gender.png'>
+<img src = '../reports/figures/3.Expenses_VS_Gender.png'>
 </html>
 
 The expenses seem to grow with age for both males and females. It looks like Males in their **20's & 60's** tend to pay more on their `Medical Expenses` than Females. Females in their **40's** are paying more than Males on their `Medical Expenses`.
@@ -84,7 +84,7 @@ The expenses seem to grow with age for both males and females. It looks like Mal
 We expect expenditures by smokers should be higher than the non smokers.
 
 <html>
-<img src = '../../reports/figures/4.Expenses_VS_Smoker.png'>
+<img src = '../reports/figures/4.Expenses_VS_Smoker.png'>
 </html>
 
 **Interesting!!!** - As expected, Health expenses of smokers are a lot higher than the one of non-smokers.
@@ -94,7 +94,7 @@ We expect expenditures by smokers should be higher than the non smokers.
 We are expecting both male and females have usual `BMI`.
 
 <html>
-<img src = '../../reports/figures/5.BMI_VS_AGE.png'>
+<img src = '../reports/figures/5.BMI_VS_AGE.png'>
 </html>
 
 The `BMI` doesn't seem to vary depending on the age nor the sex.
@@ -102,7 +102,7 @@ The `BMI` doesn't seem to vary depending on the age nor the sex.
 ##### 6. Let's see the Male & Female Expenses Over BMI
 
 <html>
-<img src = '../../reports/figures/6.EXP_VS_BMI.png'>
+<img src = '../reports/figures/6.EXP_VS_BMI.png'>
 </html>
 
 The highest expenses seem to occur for people from both genders who have a BMI that is higher than 34.
@@ -124,7 +124,7 @@ $$H_1: \mu_{Smokers} \neq \mu_{Non-Smokers}$$
 Our Null hypothesis states that mean expenses of smokers is equal to mean expenses of non-smokers and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare mean of two groups and test results are as following:
 
 ```{r}
-hypothesis_1 <- readr::read_csv('../../reports/tables/1.hypothesis_smokers.csv')
+hypothesis_1 <- readr::read_csv('../reports/tables/1.hypothesis_smokers.csv')
 kableExtra::kable(hypothesis_1)
 ```
 
@@ -140,7 +140,7 @@ $$H_1: \mu_{Males} \neq \mu_{Females}$$
 Our Null hypothesis states that mean expenses of males is equal to mean expenses of females and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare mean of two groups and test results are as following:
 
 ```{r}
-hypothesis_2 <- readr::read_csv('../../reports/tables/2.hypothesis_sex.csv')
+hypothesis_2 <- readr::read_csv('../reports/tables/2.hypothesis_sex.csv')
 kableExtra::kable(hypothesis_2)
 ```
 
@@ -148,7 +148,7 @@ The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significa
 
 # Build a predictive model 
 ```{r load data analysis}
-models <- read.csv("../../reports/tables/regression_models_base_errors.csv")
+models <- read.csv("../reports/tables/regression_models_base_errors.csv")
 model_names <- c(colnames(models))
 model_names <- model_names[2 : length(model_names)]
 ```
@@ -159,7 +159,7 @@ In this data analysis project, we primarily focus on predicting the medical expe
 Firtly, the training data was loaded and response variable was separated from the training data. Then numerical and categorical features in the data are identified. A summary of various feature transformations done on the categorical and numerical features are given below.
 
 ```{r feature transformations}
-transformations <- read.csv("../../reports/tables/preprocessors.csv")
+transformations <- read.csv("../reports/tables/preprocessors.csv")
 transformations <- transformations %>%
                     select(Numeric.features, Categorical.features)
 kableExtra::kable(transformations)
@@ -170,7 +170,7 @@ After preprocessing and feature transformations, various regression models are f
 hyper-parameter optimization. A summary of baseline performance by various regression models are givem below.
 
 ```{r model selection}
-model_base <- read.csv("../../reports/tables/regression_models_base_errors.csv")
+model_base <- read.csv("../reports/tables/regression_models_base_errors.csv")
 model_base <- model_base %>% rename("Error Metrics"=X )
 kableExtra::kable(model_base)
 ```
@@ -181,7 +181,7 @@ Based on the above scores, DecisionTreeRegressor was selected as the final model
 Hyper-parameter optimiation was performed using `GridSearchCV`. The best parameters obtained from hyper-parameter optimization are given below.
 
 ```{r  hyper-parameter tuning}
-hp <- read.csv("../../reports/tables/hyperparameters.csv")
+hp <- read.csv("../reports/tables/hyperparameters.csv")
 hp <- hp %>% rename("Hyper-parameter"=X)
 kableExtra::kable(hp)
 ```
@@ -191,7 +191,7 @@ kableExtra::kable(hp)
 ###  model evaluation on train and test
 The final tuned DecisionTreeRegressor model was evaluated on both the training and test data using various regression metrics. A summary of the results are shown below.
 ```{r  model evaluation}
-results <- read.csv("../../reports/tables/regression_errors.csv")
+results <- read.csv("../reports/tables/regression_errors.csv")
 results <- results %>% rename("Evaluation Metric"=X)
 
 # Mean absolute error on test data
@@ -200,7 +200,7 @@ mae <- results %>%
   slice(1)
 
 # Mean expense on test data
-test_data <- read.csv("../../data/processed/medical_cost_data_test.csv")
+test_data <- read.csv("../data/processed/medical_cost_data_test.csv")
 mean_exp <- test_data %>%
   pull() %>%
   mean()
@@ -212,8 +212,8 @@ A mean absolute error of `r mae` can seem to be a very high score for the regres
 
 ### Goodness of fit
 ```{r  plots}
-knitr::include_graphics("../../reports/figures/predicted_vs_actual_plot.png")
-knitr::include_graphics("../../reports/figures/residual_plot.png")
+knitr::include_graphics("../reports/figures/predicted_vs_actual_plot.png")
+knitr::include_graphics("../reports/figures/residual_plot.png")
 
 ```
 

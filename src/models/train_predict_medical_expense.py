@@ -145,14 +145,24 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
     prediction_df = pd.DataFrame({"y_actual" : y_test, "y_predicted" : y_test_predicted, "residuals" : y_test - y_test_predicted})
 
     # Predicted vs actual
-    predicted_vs_actual_plot = alt.Chart(prediction_df).mark_circle(size=60, color="green", opacity=0.4).encode(
+    p1 = alt.Chart(prediction_df).mark_circle(size=60, color="green", opacity=0.4).encode(
                                     alt.X('y_predicted', title = "Predicted Medical Expense ($)"),
                                     alt.Y('y_actual', title = "Actual Medical Expense ($)") 
                                     ).properties(
                                     title = "Predicted Vs Actual",
                                     width = 700,
                                     height = 300
-                                    ).configure_axis(
+                                    )
+
+    p2 = alt.Chart(prediction_df).mark_line(color="red", opacity=1).encode(
+                                    alt.X('y_actual'),
+                                    alt.Y('y_actual') 
+                                    ).properties(                             
+                                    width = 700,
+                                    height = 300
+                                    )
+
+    predicted_vs_actual_plot = (p1 + p2).configure_axis(
                                     labelFontSize = 20,
                                     titleFontSize = 20
                                     ).configure_title(
