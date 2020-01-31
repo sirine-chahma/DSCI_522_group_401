@@ -60,3 +60,4 @@ Details of the results can be found in the final report.
 
 
 ### Running data analysis
+![](../reports/figures/scripts.jpg)
