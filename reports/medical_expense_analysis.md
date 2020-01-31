@@ -5,16 +5,29 @@ author: Karanpal Singh, Sreejith Munthikodu, Sirine Chahma </br>
 
 # Summary
 
-In this project, we attemps to build a regression model that will help
-us predict the medical expenses of a person regarding some information
-about this person (age, sex, number of children, if the person smokes
-and the region where the person is from). After trying different types
-of regressors (linear regression, decision tree regressor, knn
-regression, random forest regression and SVR), we found out that the
-decision tree regressor ended up being the best model regarding to our
-data. Our final regressor had satisfying results on an unseen data set,
-with a ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of
-0.894 on our test data set.
+Knowing the estimated medical expenses in advance is very critical for
+insurance companies to set their yearly premiums to beneficiaries. They
+should make sure that the amount they spent on beneficiaries is less
+than the total premium they receive. Using a predictive model that
+predicts the expected medical expense of a customer, the insurance
+companies get an estimate of how much premium to charge on each segment
+of customers such that the cost results in reasonable profit to the
+company. Using such predictive models, they can identify potentially
+high-risk customers and charge a higher premium from such customers. In
+this project, we attempt to build a regression model that will help us
+predict the medical expenses of a person given information such as age,
+sex, number of children, smoking habits, and the region where the person
+is from. In the process, we are also interested in figuring out if there
+is a significant difference in expenses between smokers and non-smokers,
+and between males and females. Our hypothesis tests suggest that at 0.05
+significance level there is significant evidence to conclude that
+smokers incur more medical expenses than non-smokers. Also, there is
+statistically no significant evidence to conclude that the medical
+expenses of men and women are different. For our predictive model, after
+trying different regression models, we found that the decision tree
+regressor performs the best on our data. Using our final tuned model, we
+achieved satisfying results on the test data set, with a ￼ score of
+0.894.
 
 # Introduction
 
@@ -29,9 +42,7 @@ expenses between smokers and non-smokers, and between males and females.
 Therefore, we led two inferential studies asside in order to find an
 aswer to those questions.
 
-# Methods
-
-## Data
+# Data
 
 The Data we are using for this analysis is used in the book Machine
 Learning with R by Brett Lantz(Lantz 2013); which is a book that
@@ -54,11 +65,13 @@ split the data and study the missing values and the outliers : docopt
 pandas (McKinney 2010), numpy (Walt, Colbert, and Varoquaux 2011),
 matplotlib and seaborn (Hunter 2007).
 
+# Methodology
+
 ## Exploratory analysis on the training data set
 
 To understand the nature of predictors with respect to `Medical
 Expenses` we will perform Exploratory Data Analysis and we will try to
-understand if there are some intresting behaviours. To do so, we will
+understand if there are some interesting behaviors. To do so, we will
 use the following python packages : altair (VanderPlas et al. 2018),
 matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
 2011).
@@ -71,8 +84,8 @@ matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
 
 </html>
 
-It can be observed that `Medical Expense` of people is increasing, as
-`Age`
+It can be observed that the `Medical Expense` of people is increasing,
+as `Age`
 increases.
 
 ##### 2\. Let’s see how `Medical Expenses` are changing with `BMI (Body Mass Index)`
@@ -102,7 +115,7 @@ Expenses`.
 
 ##### 4\. Let’s see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
-We expect expenditures by smokers should be higher than the non smokers.
+We expect expenditures by smokers should be higher than non-smokers.
 
 <html>
 
@@ -110,22 +123,10 @@ We expect expenditures by smokers should be higher than the non smokers.
 
 </html>
 
-**Interesting\!\!\!** - As expected, Health expenses of smokers are a
-lot higher than the one of non-smokers.
+**Interesting\!\!\!** - As expected, health expenses of smokers are a
+lot higher than that of non-smokers.
 
-##### 5\. Let’s see how `BMI` is changing with Age for Males and Females
-
-We are expecting both male and females have usual `BMI`.
-
-<html>
-
-<img src = '../reports/figures/5.BMI_VS_AGE.png'>
-
-</html>
-
-The `BMI` doesn’t seem to vary depending on the age nor the sex.
-
-##### 6\. Let’s see the Male & Female Expenses Over BMI
+##### 5\. Let’s see the male & female expenses over BMI
 
 <html>
 
@@ -141,11 +142,10 @@ a BMI that is higher than 34.
 Now, from above Exploratory Data Analysis we are interested in following
 two questions:
 
-  - Is there a significant difference of expenses between smokers and
+  - Is there a significant difference in expenses between smokers and
     non-smokers?
-  - Is there a significant difference of expenses between males and
-    females?
-
+  - Is there a significant difference in expenses between males and
+    females
 <br>
 
 ##### 1\. Is there a significant difference of expenses between smokers and non-smokers?
@@ -159,10 +159,11 @@ two questions:
 \\mu\_{Non-Smokers}](https://latex.codecogs.com/png.latex?H_1%3A%20%5Cmu_%7BSmokers%7D%20%5Cneq%20%5Cmu_%7BNon-Smokers%7D
 "H_1: \\mu_{Smokers} \\neq \\mu_{Non-Smokers}")  
 
-Our Null hypothesis states that mean expenses of smokers is equal to
-mean expenses of non-smokers and Alternate hypothesis states that there
-is a significant difference between these two quantities. We have used
-t-test to compare mean of two groups and test results are as following:
+Our null hypothesis states that the mean expense of smokers is equal to
+the mean expense of non-smokers and alternate hypothesis states that
+there is a significant difference between these two quantities. We have
+used a t-test to compare mean of two groups and the test results are as
+following:
 
 <table>
 
@@ -309,10 +310,10 @@ The exact p-value is
 "5.8894644\\times 10^{-103}") which is very close to 0. However, while
 rendering the output to the table above it treats it as 0.
 
-As, we can observe that the p-values is less than the significance level
-of ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%") hence,
-we can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
-hypothesis and conclude that we have enough evidence to say mean
+We can observe that the p-value is less than the significance level of
+![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%"). Hence, we
+can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
+hypothesis and conclude that we have enough evidence to say the mean
 expenses between smoker and no-smokers is not
 same.
 
@@ -327,10 +328,10 @@ same.
 \\mu\_{Females}](https://latex.codecogs.com/png.latex?H_1%3A%20%5Cmu_%7BMales%7D%20%5Cneq%20%5Cmu_%7BFemales%7D
 "H_1: \\mu_{Males} \\neq \\mu_{Females}")  
 
-Our Null hypothesis states that mean expenses of males is equal to mean
-expenses of females and Alternate hypothesis states that there is a
+Our Null hypothesis states that the mean expenses of males are equal to
+mean expenses of females and Alternate hypothesis states that there is a
 significant difference between these two quantities. We have used t-test
-to compare mean of two groups and test results are as following:
+to compare the mean of two groups and test results are as following:
 
 <table>
 
@@ -480,21 +481,22 @@ can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
 hypothesis and conclude that we have enough evidence to say mean
 expenses between Males and Females is not same.
 
-# Build a predictive model
+## Build a predictive model
 
 In this data analysis project, we primarily focus on predicting the
 medical expenses given the details of a customer. We used Python for
-building the machine learnining model. The machine learning library,
+building the machine learning model. The machine learning library,
 `sci-kit learn` was extensively used in this project to transform the
 data, feature engineering, feature selection, model selection,
-hyper-parameter tuning and model evaluation.
+hyper-parameter tuning and, model evaluation.
 
 ### Preprocessing
 
-Firtly, the training data was loaded and response variable was separated
-from the training data. Then numerical and categorical features in the
-data are identified. A summary of various feature transformations done
-on the categorical and numerical features are given below.
+Firstly, the training data was loaded and the response variable was
+separated from the training data. Then numerical and categorical
+features in the data are identified. A summary of various feature
+transformations done on the categorical and numerical features are given
+below.
 
 <table>
 
@@ -557,10 +559,10 @@ StandardScaler
 ### Model Selection
 
 After preprocessing and feature transformations, various regression
-models are fitted on the training data with the default parameters.
-Model with the best performance on the training and validation dataset
+models are fitted on the training data with the default parameters. A
+model with the best performance on the training and validation dataset
 is selected for hyper-parameter optimization. A summary of baseline
-performance by various regression models are givem below.
+performance by various regression models is given below.
 
 <table>
 
@@ -741,8 +743,9 @@ currently done manually.
 
 ### hyper-parameter tuning
 
-Hyper-parameter optimiation was performed using `GridSearchCV`. The best
-parameters obtained from hyper-parameter optimization are given below.
+Hyper-parameter optimization was performed using `GridSearchCV`. The
+best parameters obtained from hyper-parameter optimization are given
+below.
 
 <table>
 
@@ -820,13 +823,13 @@ regressor\_\_min\_samples\_split
 
 </table>
 
-# Evaluate the predictive model
+# Results
 
-### model evaluation on train and test
+### model evaluation on train and test dataset
 
 The final tuned DecisionTreeRegressor model was evaluated on both the
 training and test data using various regression metrics. A summary of
-the results are shown below.
+the results is shown below.
 
 <table>
 
@@ -979,7 +982,7 @@ expenses. Moreover, when we take a look at the
 ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score, which is
 equal to 0.894, we realize that this score is pretty high, which means
 that our model explains most of the variability of our response data
-around its mean. The goodness of fit of the regression model is analysed
+around its mean. The goodness of fit of the regression model is analzsed
 in the following
 section.
 
@@ -991,15 +994,24 @@ From the predicted Vs Actual plot, we can see ther are some errors in
 prediction at lower expenses. Overall the model does a pretty decent job
 of predicting the medical expenses given the patient information.
 
-# Limitations and Future Scope
+# Limitations and Future Directions
 
-Regarding to the lack of enough data, the lack of relevant features and
-the fact that the model is not tuned completely, we think that our model
-could still be improved. Considering the limited time available for the
-project, we have not done thorough feature engineering, feature
-selection, model selection and hyper-parameter tuning. Those last points
-could be a good starting point for those who would like to improve our
-model. Overall, this serves as a very good base model on which further
+The model that we built for predicting the medical expenses only serves
+as a baseline. The limitations are mainly due to the data. We have a
+very small dataset with very few features. For building a
+deployment-ready model for practical applications we need to collect
+more data. Apart from this, we can improve the model by performing
+feature engineering. In this project, no new features were created apart
+from polynomial features and one-hot-encoded features. With some
+research on the domain, we can come up with entirely new features or we
+can combine existing features to get new features. Also, we haven’t done
+any feature selection in this project. Data collection and feature
+engineering are the most critical steps in building any machine earning
+product. However, due to the limited time available, we could not
+allocate sufficient resources for feature engineering. Moreover, we
+haven’t performed model selection and hyper-parameter tuning in this
+project. SO there is a lot of scope for future works in this project.
+Overall, this serves as a very good base model on which further
 improvements can be made.
 
 # References
