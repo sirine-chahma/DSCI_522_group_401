@@ -147,6 +147,8 @@ project:
       - caret==6.0-84
       - ggridges==0.5.1
       - ggthemes==4.2.0
+  - selenium 3.141.0
+  - ChromeDriver 79.0.3945.36
 
 # References
 

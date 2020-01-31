@@ -21,21 +21,18 @@ library(caret)
 regression_error <- read.csv("reports/tables/regression_errors.csv")
 ```
 
-In this project, we attemps to build a regression model that will help us predict the medical expenses of a person regarding some information about this person (age, sex, number of children, if the person smokes and the region where the person is from). After trying different types of regressors (linear regression, decision tree regressor, knn regression, random forest regression and SVR), we found out that the decision tree regressor ended up being the best model regarding to our data. Our final regressor had satisfying results on an unseen data set, with a $R^2$ score of `r round(regression_error$test_data[4], 3)` on our test data set.
+Knowing the estimated medical expenses in advance is very critical for insurance companies to set their yearly premiums to beneficiaries. They should make sure that the amount they spent on beneficiaries is less than the total premium they receive. Using a predictive model that predicts the expected medical expense of a customer, the insurance companies get an estimate of how much premium to charge on each segment of customers such that the cost results in reasonable profit to the company. Using such predictive models, they can identify potentially high risk customers and charge a higher premium from such customers.  In this project, we attemp to build a regression model that will help us predict the medical expenses of a person given information such as age, sex, number of children, smoking habits, and the region where the person is from. In the process, we are also interested in figuring out   if there is a significant difference of expenses between smokers and non-smokers, and between males and females. Our hypothesis tests suggest that at 0.05 significance level there is significant evidence to conclude that the smokers incurrs more medical expense than non-smokers. Also, there is statistically no significant evidence to conclude that the medical expenses of men and women are different. For our predictive model, after trying different regression models, we found that the decision tree regressor performs the best on our data. Using our final tuned model, we achieved satisfying results on the test data set, with a $R^2$ score of `r round(regression_error$test_data[4], 3)`. 
 
-This project will attempt to build a predictive model that will answer the following question : "Given a person's information, what would be his/her predicted medical expenses?". Ansewering this question can be important for insurance compagnies who wants to evaluate the risk to insure a certain person regarding to his/her possible medical expenses. 
-
-We also wanted to figure out if there is a significant difference of expenses between smokers and non-smokers, and between males and females. Therefore, we led two inferential studies asside in order to find an aswer to those questions.
 
 The Data we are using for this analysis is used in the book Machine Learning with R by Brett Lantz[@source]; which is a book that provides an introduction to machine learning using R. All of these datasets are in the public domain. The data explain the cost of a small sample of USA population Medical Insurance Cost based on attributes like age, sex, number of children etc. Additional information about this data can be found [here](https://gist.github.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41).
 
 ### Research Question
 
-For this project we are working on the following main predictive research question
+For this project we are working on the following main predictive research question.
 
- Our research question is "Given a person's information, what would be his/her predicted medical expenses?"
+  "Given a person's information, what would be his/her predicted medical expenses?"
 
-Throughout this project we also want to investigate two more inferential sub-questions
+We are also investigating two inferential sub-questions given below.
 
 - Is there a significant difference of expenses between smokers and non-smokers? (inferential)
 - Is there a significant difference of expenses between males and females? (inferential)
@@ -68,13 +65,13 @@ For the sub-questions, we will be running two two-sided hypothesis tests, compar
 
 ### Exploratory Data Analysis
 
-- In order to know if medical expenses increases with age, and also its bifurcation on sex, we are going to plot the expensive VS the age for each sex.
+- In order to know if medical expenses increases with age, and also its bifurcation on sex, we are going to plot the expense VS the age for each sex.
 
-- In order to know if medical expenses increases with age, and also its bifurcation on smokers and non-smokers, we are going to plot the expensive VS the age for smokers and non-smokers.
+- In order to know if medical expenses increases with age, and also its bifurcation on smokers and non-smokers, we are going to plot the expense VS the age for smokers and non-smokers.
 
 ### Results of Analysis
-Suggest how you would share the results of your analysis as one or more tables and/or figures.
 
+We evaluated our inferential and predictive models using the following evaluation metrics.   
   - Evaluation metrics  
       1. Mean absolute error    
       2. Mean squared error    
@@ -84,6 +81,8 @@ Suggest how you would share the results of your analysis as one or more tables a
   - Best fit line plot   
       1. Predicted expense vs Actual expense plot and residual plot    
 - p-values for inferential sub-questions  
+
+Details of the results can be found in the final report.  
 
 
 ## Report
@@ -133,6 +132,7 @@ python src/models/train_predict_medical_expense.py --training_data_file_path="da
   - caret==6.0-84
   - ggridges==0.5.1
   - ggthemes==4.2.0
-
+      - selenium 3.141.0
+      - ChromeDriver 79.0.3945.36
 
 # References
