@@ -5,27 +5,29 @@
 
 ## About
 
-In this project, we attemps to build a regression model that will help
-us predict the medical expenses of a person regarding some information
-about this person (age, sex, number of children, if the person smokes
-and the region where the person is from). After trying different types
-of regressors (linear regression, decision tree regressor, knn
-regression, random forest regression and SVR), we found out that the
-decision tree regressor ended up being the best model regarding to our
-data. Our final regressor had satisfying results on an unseen data set,
-with a ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of
-0.894 on our test data set.
-
-This project will attempt to build a predictive model that will answer
-the following question : “Given a person’s information, what would be
-his/her predicted medical expenses?”. Ansewering this question can be
-important for insurance compagnies who wants to evaluate the risk to
-insure a certain person regarding to his/her possible medical expenses.
-
-We also wanted to figure out if there is a significant difference of
-expenses between smokers and non-smokers, and between males and females.
-Therefore, we led two inferential studies asside in order to find an
-aswer to those questions.
+Knowing the estimated medical expenses in advance is very critical for
+insurance companies to set their yearly premiums to beneficiaries. They
+should make sure that the amount they spent on beneficiaries is less
+than the total premium they receive. Using a predictive model that
+predicts the expected medical expense of a customer, the insurance
+companies get an estimate of how much premium to charge on each segment
+of customers such that the cost results in reasonable profit to the
+company. Using such predictive models, they can identify potentially
+high-risk customers and charge a higher premium from such customers. In
+this project, we attempt to build a regression model that will help us
+predict the medical expenses of a person given information such as age,
+sex, number of children, smoking habits, and the region where the person
+is from. In the process, we are also interested in figuring out if there
+is a significant difference in expenses between smokers and non-smokers,
+and between males and females. Our hypothesis tests suggest that at 0.05
+significance level there is significant evidence to conclude that
+smokers incur more medical expenses than non-smokers. Also, there is
+statistically no significant evidence to conclude that the medical
+expenses of men and women are different. For our predictive model, after
+trying different regression models, we found that the decision tree
+regressor performs the best on our data. Using our final tuned model, we
+achieved satisfying results on the test data set, with a
+![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of 0.894.
 
 The Data we are using for this analysis is used in the book Machine
 Learning with R by Brett Lantz(Lantz 2013); which is a book that
@@ -35,74 +37,6 @@ sample of USA population Medical Insurance Cost based on attributes like
 age, sex, number of children etc. Additional information about this data
 can be found
 [here](https://gist.github.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41).
-
-### Research Question
-
-For this project we are working on the following main predictive
-research question
-
-Our research question is “Given a person’s information, what would be
-his/her predicted medical expenses?”
-
-Throughout this project we also want to investigate two more inferential
-sub-questions
-
-  - Is there a significant difference of expenses between smokers and
-    non-smokers? (inferential)
-  - Is there a significant difference of expenses between males and
-    females? (inferential)
-
-### Analysis Plan
-
-For our predictive modeling, the analysis plan is summarised below :
-
-  - Transform numeric features using PolynomialFeatures and
-    StandardScaler in sci-kit learn.  
-  - Transform categorical features using OneHotEncoder in sci-kit
-    learn.  
-  - Get base performance using the following regression models.
-    1.  Linear Regression  
-    2.  KNN Regressor  
-    3.  DecisionTreeRegressor  
-    4.  RandomForestRegressor  
-    5.  SVR(SupportVectorRegressor)  
-  - Choose a model from above based on performance  
-  - Perform hyper-parameter tuning  
-  - Evaluate the model using the following metrics
-    1.  Mean absolute error  
-    2.  Mean squared error  
-    3.  Root mean squared error  
-    4.  R2 Score  
-    5.  Explained varoance score  
-  - Plot predicted expense vs actual expense plot and residual plot
-
-For the sub-questions, we will be running two two-sided hypothesis
-tests, comparing the means of the different groups under study.
-
-### Exploratory Data Analysis
-
-  - In order to know if medical expenses increases with age, and also
-    its bifurcation on sex, we are going to plot the expensive VS the
-    age for each sex.
-
-  - In order to know if medical expenses increases with age, and also
-    its bifurcation on smokers and non-smokers, we are going to plot the
-    expensive VS the age for smokers and non-smokers.
-
-### Results of Analysis
-
-Suggest how you would share the results of your analysis as one or more
-tables and/or figures.
-
-  - Evaluation metrics
-    1.  Mean absolute error  
-    2.  Mean squared error  
-    3.  Root mean squared error  
-    4.  R2 Score  
-    5.  Explained varoance score  
-  - Best fit line plot
-    1.  Predicted expense vs Actual expense plot and residual plot  
-  - p-values for inferential sub-questions
 
 ## Report
 
@@ -115,6 +49,9 @@ To replicate the analysis, clone this GitHub repository, install the
 [dependencies](#dependencies) listed below, and run the following
 command at the command line/terminal from the root directory of this
 project:
+
+    # Download the data
+    python get_data.py --url=https://gist.githubusercontent.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41/raw/d42d226d0dd64e7f5395a0eec1b9190a10edbc03/Medical_Cost.csv --file_location=../../data/original/medical_cost_data.csv
 
     # Split the data
     Rscript src/data/pre_processing_data.R --input_file=data/original/medical_cost_data.csv --output_dir=data/processed
@@ -147,8 +84,8 @@ project:
       - caret==6.0-84
       - ggridges==0.5.1
       - ggthemes==4.2.0
-  - selenium 3.141.0
-  - ChromeDriver 79.0.3945.36
+          - selenium 3.141.0
+          - ChromeDriver 79.0.3945.36
 
 # References
 
