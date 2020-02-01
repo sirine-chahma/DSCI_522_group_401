@@ -40,8 +40,10 @@ can be found
 
 ## Report
 
-The final report can be found
-[here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/reports/medical_expense_analysis.md).
+  - The final report can be found
+    [here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/reports/medical_expense_analysis.md).
+  - Exploratory Data Analysis can be found
+    [here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/notebooks/EDA.ipynb).
 
 ## Usage
 
