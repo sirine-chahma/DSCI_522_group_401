@@ -27,7 +27,7 @@ expenses of men and women are different. For our predictive model, after
 trying different regression models, we found that the decision tree
 regressor performs the best on our data. Using our final tuned model, we
 achieved satisfying results on the test data set, with a
-![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of 0.894.
+![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score of 0.826.
 
 The Data we are using for this analysis is used in the book Machine
 Learning with R by Brett Lantz(Lantz 2013); which is a book that
@@ -41,7 +41,7 @@ can be found
 ## Report
 
 The final report can be found
-[here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/src/reports/medical_expense_analysis.md).
+[here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/reports/medical_expense_analysis.md).
 
 ## Usage
 
@@ -65,6 +65,9 @@ project:
     # Predictive Modeling
     python src/models/train_predict_medical_expense.py --training_data_file_path="data/processed/medical_cost_data_train.csv" --test_data_file_path="data/processed/medical_cost_data_test.csv" --results_file_location="reports"
 
+    # Report
+    Rscript -e "rmarkdown::render('reports/medical_expense_analysis.Rmd')"
+
 ## Dependencies
 
   - Python 3.7.3 and Python packages:
@@ -75,6 +78,7 @@ project:
       - altair==4.0.0
       - scipy==1.2.3
       - matplotlib==3.2.1
+      - selenium –3.141.0
   - R version 3.6.1 and R packages:
       - knitr==1.26
       - testthat==2.3.1
@@ -84,12 +88,12 @@ project:
       - caret==6.0-84
       - ggridges==0.5.1
       - ggthemes==4.2.0
-          - selenium 3.141.0
-          - ChromeDriver 79.0.3945.36
+      - selenium 3.141.0
+  - ChromeDriver 79.0.3945.36
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 
 <div id="ref-source">
 

@@ -1,4 +1,4 @@
 ,Best parameter
 preprocessor__num__poly__degree,2
 regressor__max_depth,4
-regressor__min_samples_split,6
+regressor__min_samples_split,3
