@@ -85,8 +85,7 @@ matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
 </html>
 
 It can be observed that the `Medical Expense` of people is increasing,
-as `Age`
-increases.
+as `Age` increases.
 
 ##### 2\. Let’s see how `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
@@ -96,8 +95,7 @@ increases.
 
 </html>
 
-The highest expenses seem to occur for people who have a higher
-BMI.
+The highest expenses seem to occur for people who have a higher BMI.
 
 ##### 3\. Let’s see how much money males and females spending on medical treatments between 18-64 Years
 
@@ -110,23 +108,22 @@ BMI.
 The expenses seem to grow with age for both males and females. It looks
 like Males in their **20’s & 60’s** tend to pay more on their `Medical
 Expenses` than Females. Females in their **40’s** are paying more than
-Males on their `Medical
-Expenses`.
+Males on their `Medical Expenses`.
 
 ##### 4\. Let’s see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
-We expect expenditures by smokers should be higher than the non smokers.
+We expect expenditures by smokers should be higher than non-smokers.
 
 <html>
 
-<img src = '../../reports/figures/4.Expenses_VS_Smoker.png'>
+<img src = '../reports/figures/4.Expenses_VS_Smoker.png'>
 
 </html>
 
-**Interesting\!\!\!** - As expected, Health expenses of smokers are a
-lot higher than the one of non-smokers.
+**Interesting\!\!\!** - As expected, health expenses of smokers are a
+lot higher than that of non-smokers.
 
-##### 5\. Let’s see the Male & Female Expenses Over BMI
+##### 5\. Let’s see the male & female expenses over BMI
 
 <html>
 
@@ -137,6 +134,17 @@ lot higher than the one of non-smokers.
 The highest expenses seem to occur for people from both genders who have
 a BMI that is higher than 34.
 
+##### 6\. Correlation between the variables
+
+<html>
+
+<img src = '../reports/figures/0.correlation.png'>
+
+</html>
+
+We can notice that none of the features seem to be correlated with each
+other. Hence, the features don’t seem to be relevant individually.
+
 ## Answering the Inferential Research Questions
 
 Now, from above Exploratory Data Analysis we are interested in following
@@ -145,8 +153,7 @@ two questions:
   - Is there a significant difference in expenses between smokers and
     non-smokers?
   - Is there a significant difference in expenses between males and
-    females
-<br>
+    females <br>
 
 ##### 1\. Is there a significant difference of expenses between smokers and non-smokers?
 
@@ -314,8 +321,7 @@ We can observe that the p-value is less than the significance level of
 ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%"). Hence, we
 can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
 hypothesis and conclude that we have enough evidence to say the mean
-expenses between smoker and no-smokers is not
-same.
+expenses between smoker and no-smokers is not same.
 
 ##### 2\. Is there a significant difference of expenses between males and females?
 
@@ -977,14 +983,13 @@ Explained\_variance\_score
 
 A mean absolute error of 2289.5072862 can seem to be a very high score
 for the regression model. However, considering the mean medical expense
-of 1.337516810^{4}, we are not very far from predicting the accurate
+of 1.322343110^{4}, we are not very far from predicting the accurate
 expenses. Moreover, when we take a look at the
 ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score, which is
 equal to 0.894, we realize that this score is pretty high, which means
 that our model explains most of the variability of our response data
 around its mean. The goodness of fit of the regression model is analzsed
-in the following
-section.
+in the following section.
 
 ### Goodness of fit
 
@@ -1028,7 +1033,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
+in Science & Engineering* 9 (3): 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -1069,7 +1074,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-The Open Journal. <https://doi.org/10.21105/joss.01057>.
+<https://doi.org/10.21105/joss.01057>.
 
 </div>
 
