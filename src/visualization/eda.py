@@ -57,10 +57,21 @@ def main(input_data, output_location):
     meoa.save(output_location + '/1.Expenses_VS_Age.png')
 
     # plotting relationship between Medical Expenses vs BMI
-    bmi = alt.Chart(training_df.groupby(['bmi']).mean().reset_index()).mark_area().encode(
-        alt.X('bmi:Q', title = 'BMI', bin=alt.Bin(maxbins=60)),
-        alt.Y('charges:Q', title = 'Expenses')
-    ).properties(title='Medical Expenses vs BMI')
+    
+    training_df = X_train
+    training_df['charges'] = y_train
+
+    training_df['bmi_cat'] = 'normal'
+    training_df.loc[training_df['bmi'] < 18.5,'bmi_cat'] = 'underweigth'
+    training_df.loc[training_df['bmi'] > 25,'bmi_cat'] = 'overweigth'
+    training_df.loc[training_df['bmi'] > 30,'bmi_cat'] = 'obese'
+
+
+    bmi = alt.Chart(training_df.groupby(['bmi_cat']).mean().reset_index()).mark_bar().encode(
+    alt.X('bmi_cat:N', title = 'BMI', sort=['underweigth', 'normal', 'overweight', 'obese']),
+    alt.Y('charges:Q', title = 'Expenses')
+    ).properties(title='Medical Expenses vs BMI', width=300)
+
 
     # saving results as png
     bmi.save(output_location + '/2.Expenses_VS_BMI.png')
@@ -85,23 +96,13 @@ def main(input_data, output_location):
     # saving results as png
     exp_smoke.save(output_location + '/4.Expenses_VS_Smoker.png')
 
-    # plotting relationship between Males & Females BMI Over Age
-    bmi_age = alt.Chart(X_train).mark_point().encode(
-        
-        alt.X('age:N', title = 'Age'),
-        alt.Y('bmi:Q', title = 'BMI'),
-        alt.Color('sex:N')
-    ).properties(title='Males & Females BMI Over Age')
-    
-    # saving results as png
-    bmi_age.save(output_location + '/5.BMI_VS_AGE.png')
 
     # plotting relationship between Male & Female Expenses Over BMI
-    exp_bmi = alt.Chart(training_df.groupby(['bmi','sex']).mean().reset_index()).mark_area().encode(
-        alt.X('bmi:Q', title = 'BMI', bin=alt.Bin(maxbins=60)),
+    exp_bmi = alt.Chart(training_df.groupby(['bmi_cat','sex']).mean().reset_index()).mark_bar().encode(
+        alt.X('bmi_cat:O', title = 'BMI', sort=['underweigth', 'normal', 'overweight', 'obese']),
         alt.Y('charges:Q', title = 'Expenses'),
         alt.Color('sex:N')
-    ).properties(title='Male & Female Expenses Over BMI')
+    ).properties(title='Male & Female Expenses Over BMI', width=300)
 
     # saving results as png
     exp_bmi.save(output_location + '/6.EXP_VS_BMI.png')
