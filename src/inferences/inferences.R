@@ -28,8 +28,10 @@ main <- function(input_file, output_dir){
   # read data
   data <- read_csv(input_file)  
   
-  # hypothesis test for mean expenses difference between smokers and non-smokers
-  test_smokers <- t.test(data$charges ~ data$smoker, mu = 0, alt = 'two.sided', conf = 0.95, var.eq = FALSE, paired = FALSE)
+  # hypothesis test for mean expenses of smokers are higher than non-smokers
+  smokers <- data %>% filter(smoker == 'yes') %>% select(charges)
+  non_smokers <- data %>% filter(smoker == 'no') %>% select(charges)
+  test_smokers <- t.test(smokers$charges, mu = mean(non_smokers$charges), alt = 'greater', conf = 0.95)
   
   # hypothesis test for mean expenses difference between males and females
   test_sex <- t.test(data$charges ~ data$sex, mu = 0, alt = 'two.sided', conf = 0.95, var.eq = FALSE, paired = FALSE)
