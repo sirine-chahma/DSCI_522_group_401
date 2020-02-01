@@ -123,16 +123,16 @@ We can notice that none of the features seem to be correlated with each other. H
 
 Now, from above Exploratory Data Analysis we are interested in following two questions:
 
-  - Is there a significant difference in expenses between smokers and non-smokers? 
-  - Is there a significant difference in expenses between males and females
+  - Are medical expenses of smokers are statistically higher than non-smokers? 
+  - Is there a significant statistical difference in expenses between males and females?
 <br> 
 
-##### 1. Is there a significant difference of expenses between smokers and non-smokers? 
+##### 1. Are medical expenses of smokers are statistically higher than non-smokers?
 
-$$H_0: \mu_{Smokers} = \mu_{Non-Smokers}$$
-$$H_1: \mu_{Smokers} \neq \mu_{Non-Smokers}$$
+$$H_0: \mu_{Smokers} \leq \mu_{Non-Smokers}$$
+$$H_1: \mu_{Smokers} > \mu_{Non-Smokers}$$
 
-Our null hypothesis states that the mean expense of smokers is equal to the mean expense of non-smokers and alternate hypothesis states that there is a significant difference between these two quantities. We have used a t-test to compare mean of two groups and the test results are as following:
+Our null hypothesis states that the mean expense of smokers is less than equal to the mean expense of non-smokers and alternate hypothesis states that the expenses of smokers are higher than the expenses of non-smokers. We have used a One Sample t-test:
 
 ```{r}
 hypothesis_1 <- readr::read_csv('../reports/tables/1.hypothesis_smokers.csv')
@@ -141,9 +141,9 @@ kableExtra::kable(hypothesis_1)
 
 The exact p-value is $`r hypothesis_1$p.value`$ which is very close to 0. However, while rendering the output to the table above it treats it as 0.
 
-We can observe that the p-value is less than the significance level of $5\%$. Hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say the mean expenses between smoker and no-smokers is not same. 
+We can observe that the p-value is less than the significance level of $5\%$. Hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say the mean expenses of smoker is higher than the mean expenses of non-smokers.
 
-##### 2. Is there a significant difference of expenses between males and females?
+##### 2. Is there a significant statistical difference in expenses between males and females?
 
 $$H_0: \mu_{Males} = \mu_{Females}$$
 $$H_1: \mu_{Males} \neq \mu_{Females}$$

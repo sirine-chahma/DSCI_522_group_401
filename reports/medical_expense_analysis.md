@@ -85,7 +85,8 @@ matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
 </html>
 
 It can be observed that the `Medical Expense` of people is increasing,
-as `Age` increases.
+as `Age`
+increases.
 
 ##### 2\. Let’s see how `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
@@ -95,7 +96,8 @@ as `Age` increases.
 
 </html>
 
-The highest expenses seem to occur for people who have a higher BMI.
+The highest expenses seem to occur for people who have a higher
+BMI.
 
 ##### 3\. Let’s see how much money males and females spending on medical treatments between 18-64 Years
 
@@ -108,7 +110,8 @@ The highest expenses seem to occur for people who have a higher BMI.
 The expenses seem to grow with age for both males and females. It looks
 like Males in their **20’s & 60’s** tend to pay more on their `Medical
 Expenses` than Females. Females in their **40’s** are paying more than
-Males on their `Medical Expenses`.
+Males on their `Medical
+Expenses`.
 
 ##### 4\. Let’s see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
@@ -150,27 +153,27 @@ other. Hence, the features don’t seem to be relevant individually.
 Now, from above Exploratory Data Analysis we are interested in following
 two questions:
 
-  - Is there a significant difference in expenses between smokers and
+  - Are medical expenses of smokers are statistically higher than
     non-smokers?
-  - Is there a significant difference in expenses between males and
-    females <br>
+  - Is there a significant statistical difference in expenses between
+    males and females?
+<br>
 
-##### 1\. Is there a significant difference of expenses between smokers and non-smokers?
+##### 1\. Are medical expenses of smokers are statistically higher than non-smokers?
 
   
-![H\_0: \\mu\_{Smokers} =
-\\mu\_{Non-Smokers}](https://latex.codecogs.com/png.latex?H_0%3A%20%5Cmu_%7BSmokers%7D%20%3D%20%5Cmu_%7BNon-Smokers%7D
-"H_0: \\mu_{Smokers} = \\mu_{Non-Smokers}")  
+![H\_0: \\mu\_{Smokers} \\leq
+\\mu\_{Non-Smokers}](https://latex.codecogs.com/png.latex?H_0%3A%20%5Cmu_%7BSmokers%7D%20%5Cleq%20%5Cmu_%7BNon-Smokers%7D
+"H_0: \\mu_{Smokers} \\leq \\mu_{Non-Smokers}")  
   
-![H\_1: \\mu\_{Smokers} \\neq
-\\mu\_{Non-Smokers}](https://latex.codecogs.com/png.latex?H_1%3A%20%5Cmu_%7BSmokers%7D%20%5Cneq%20%5Cmu_%7BNon-Smokers%7D
-"H_1: \\mu_{Smokers} \\neq \\mu_{Non-Smokers}")  
+![H\_1: \\mu\_{Smokers} \>
+\\mu\_{Non-Smokers}](https://latex.codecogs.com/png.latex?H_1%3A%20%5Cmu_%7BSmokers%7D%20%3E%20%5Cmu_%7BNon-Smokers%7D
+"H_1: \\mu_{Smokers} \> \\mu_{Non-Smokers}")  
 
-Our null hypothesis states that the mean expense of smokers is equal to
-the mean expense of non-smokers and alternate hypothesis states that
-there is a significant difference between these two quantities. We have
-used a t-test to compare mean of two groups and the test results are as
-following:
+Our null hypothesis states that the mean expense of smokers is less than
+equal to the mean expense of non-smokers and alternate hypothesis states
+that the expenses of smokers are higher than the expenses of
+non-smokers. We have used a One Sample t-test:
 
 <table>
 
@@ -181,18 +184,6 @@ following:
 <th style="text-align:right;">
 
 estimate
-
-</th>
-
-<th style="text-align:right;">
-
-estimate1
-
-</th>
-
-<th style="text-align:right;">
-
-estimate2
 
 </th>
 
@@ -248,25 +239,13 @@ alternative
 
 <td style="text-align:right;">
 
-\-23615.96
-
-</td>
-
-<td style="text-align:right;">
-
-8434.268
-
-</td>
-
-<td style="text-align:right;">
-
 32050.23
 
 </td>
 
 <td style="text-align:right;">
 
-\-32.75189
+33.87013
 
 </td>
 
@@ -278,31 +257,31 @@ alternative
 
 <td style="text-align:right;">
 
-311.8511
+273
 
 </td>
 
 <td style="text-align:right;">
 
-\-25034.71
+30899.45
 
 </td>
 
 <td style="text-align:right;">
 
-\-22197.21
+Inf
 
 </td>
 
 <td style="text-align:left;">
 
-Welch Two Sample t-test
+One Sample t-test
 
 </td>
 
 <td style="text-align:left;">
 
-two.sided
+greater
 
 </td>
 
@@ -313,17 +292,18 @@ two.sided
 </table>
 
 The exact p-value is
-![5.8894644\\times 10^{-103}](https://latex.codecogs.com/png.latex?5.8894644%5Ctimes%2010%5E%7B-103%7D
-"5.8894644\\times 10^{-103}") which is very close to 0. However, while
+![4.6718552\\times 10^{-100}](https://latex.codecogs.com/png.latex?4.6718552%5Ctimes%2010%5E%7B-100%7D
+"4.6718552\\times 10^{-100}") which is very close to 0. However, while
 rendering the output to the table above it treats it as 0.
 
 We can observe that the p-value is less than the significance level of
 ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%"). Hence, we
 can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
 hypothesis and conclude that we have enough evidence to say the mean
-expenses between smoker and no-smokers is not same.
+expenses of smoker is higher than the mean expenses of
+non-smokers.
 
-##### 2\. Is there a significant difference of expenses between males and females?
+##### 2\. Is there a significant statistical difference in expenses between males and females?
 
   
 ![H\_0: \\mu\_{Males} =
@@ -634,7 +614,7 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-0.000
+0.0000
 
 </td>
 
@@ -646,7 +626,7 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-961.5010
+955.7440
 
 </td>
 
@@ -674,7 +654,7 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-2916.671
+2803.5000
 
 </td>
 
@@ -686,7 +666,7 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-2471.5320
+2492.3880
 
 </td>
 
@@ -708,31 +688,31 @@ training\_time(s)
 
 <td style="text-align:right;">
 
-0.0579
+0.0558
 
 </td>
 
 <td style="text-align:right;">
 
-0.137
+0.0901
 
 </td>
 
 <td style="text-align:right;">
 
-0.0762
+0.0763
 
 </td>
 
 <td style="text-align:right;">
 
-1.3243
+1.4292
 
 </td>
 
 <td style="text-align:right;">
 
-0.2483
+0.2095
 
 </td>
 
@@ -819,7 +799,7 @@ regressor\_\_min\_samples\_split
 
 <td style="text-align:right;">
 
-9
+6
 
 </td>
 
@@ -883,7 +863,7 @@ Mean Absolute Error
 
 <td style="text-align:right;">
 
-2.289507e+03
+2.780371e+03
 
 </td>
 
@@ -905,7 +885,7 @@ Mean Squared Error
 
 <td style="text-align:right;">
 
-1.510393e+07
+2.506713e+07
 
 </td>
 
@@ -927,7 +907,7 @@ Root Mean Squared Error
 
 <td style="text-align:right;">
 
-3.886378e+03
+5.006708e+03
 
 </td>
 
@@ -949,7 +929,7 @@ R2\_score
 
 <td style="text-align:right;">
 
-8.942746e-01
+8.261748e-01
 
 </td>
 
@@ -971,7 +951,7 @@ Explained\_variance\_score
 
 <td style="text-align:right;">
 
-8.945348e-01
+8.264199e-01
 
 </td>
 
@@ -981,15 +961,16 @@ Explained\_variance\_score
 
 </table>
 
-A mean absolute error of 2289.5072862 can seem to be a very high score
+A mean absolute error of 2780.3705362 can seem to be a very high score
 for the regression model. However, considering the mean medical expense
 of 1.322343110^{4}, we are not very far from predicting the accurate
 expenses. Moreover, when we take a look at the
 ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score, which is
-equal to 0.894, we realize that this score is pretty high, which means
+equal to 0.826, we realize that this score is pretty high, which means
 that our model explains most of the variability of our response data
 around its mean. The goodness of fit of the regression model is analzsed
-in the following section.
+in the following
+section.
 
 ### Goodness of fit
 
@@ -1033,7 +1014,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3): 90–95.
+in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -1074,7 +1055,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-<https://doi.org/10.21105/joss.01057>.
+The Open Journal. <https://doi.org/10.21105/joss.01057>.
 
 </div>
 

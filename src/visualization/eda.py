@@ -27,6 +27,10 @@ def main(input_data, output_location):
     medical_data = pd.read_csv(input_data)
     X_train = medical_data.drop(columns="charges")
     y_train = medical_data.charges
+    
+    # dataset can't be empty
+    assert X_train.shape != (0, 0), 'Empty Dataset: X'
+    assert len(y_train != 0), 'Empty Dataset: y'
 
     training_df = X_train
     training_df['charges'] = y_train

@@ -1,2 +1,2 @@
-estimate,estimate1,estimate2,statistic,p.value,parameter,conf.low,conf.high,method,alternative
--23615.963533676644,8434.268297856202,32050.23183153285,-32.75188776634183,5.889464446716475e-103,311.85112492054645,-25034.7145333493,-22197.21253400399,Welch Two Sample t-test,two.sided
+estimate,statistic,p.value,parameter,conf.low,conf.high,method,alternative
+32050.23183153285,33.87013439224884,4.671855235241613e-100,273,30899.451967987916,Inf,One Sample t-test,greater
