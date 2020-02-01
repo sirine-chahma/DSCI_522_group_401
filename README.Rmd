@@ -27,7 +27,7 @@ The Data we are using for this analysis is used in the book Machine Learning wit
 
 
 ## Report
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/src/reports/medical_expense_analysis.md).
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_group_401/blob/master/reports/medical_expense_analysis.md).
 
 ## Usage
 
@@ -58,6 +58,10 @@ Rscript src/inferences/inferences.R --input_file=data/original/medical_cost_data
 python src/models/train_predict_medical_expense.py --training_data_file_path="data/processed/medical_cost_data_train.csv" --test_data_file_path="data/processed/medical_cost_data_test.csv" --results_file_location="reports"
 ```
 
+```{}
+# Report
+Rscript -e "rmarkdown::render('reports/medical_expense_analysis.Rmd')"
+```
 
 ## Dependencies
 - Python 3.7.3 and Python packages:
@@ -78,8 +82,7 @@ python src/models/train_predict_medical_expense.py --training_data_file_path="da
   - caret==6.0-84
   - ggridges==0.5.1
   - ggthemes==4.2.0
-      - selenium 3.141.0
-      - ChromeDriver 79.0.3945.36
-- chromedriver
+  - selenium 3.141.0
+- ChromeDriver 79.0.3945.36
 
 # References

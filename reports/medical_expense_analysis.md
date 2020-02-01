@@ -620,13 +620,13 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-2739.4530
+2739.453
 
 </td>
 
 <td style="text-align:right;">
 
-955.7440
+938.0060
 
 </td>
 
@@ -654,19 +654,19 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-2803.5000
+2808.8110
 
 </td>
 
 <td style="text-align:right;">
 
-3654.2210
+3654.221
 
 </td>
 
 <td style="text-align:right;">
 
-2492.3880
+2485.7190
 
 </td>
 
@@ -688,31 +688,31 @@ training\_time(s)
 
 <td style="text-align:right;">
 
-0.0558
+0.0887
 
 </td>
 
 <td style="text-align:right;">
 
-0.0901
+0.0736
 
 </td>
 
 <td style="text-align:right;">
 
-0.0763
+0.082
 
 </td>
 
 <td style="text-align:right;">
 
-1.4292
+1.3292
 
 </td>
 
 <td style="text-align:right;">
 
-0.2095
+0.2062
 
 </td>
 
@@ -799,7 +799,7 @@ regressor\_\_min\_samples\_split
 
 <td style="text-align:right;">
 
-6
+3
 
 </td>
 
