@@ -30,21 +30,50 @@ def main(input_data, output_location):
 
     training_df = X_train
     training_df['charges'] = y_train
+    
+    #plotting the correlation between features
+    cor = X_train.corr()
+    cor = cor.reset_index()
+    cor = pd.melt(cor, id_vars="index")
+    cor_map = alt.Chart(cor).mark_rect().encode(
+    alt.X('index:O', title=''),
+    alt.Y('variable:O', title=''),
+    alt.Color('value:Q',scale = alt.Scale(domain=[0, 1], scheme = 'purplered'))
+    ).properties(title="Correlation map of the features", width = 700, height = 300
+    ).configure_axis(labelFontSize = 15, titleFontSize = 15
+    ).configure_title(fontSize = 15)
+    
+    # saving results as png
+    cor_map.save(output_location + '/0.correlation.png')
 
     # plotting relationship between Medical Expenses over Age
     meoa = alt.Chart(training_df.groupby(['age']).mean().reset_index()).mark_line(point = True).encode(
         alt.X('age:N', title = 'Age'),
         alt.Y('charges:Q', title = 'Expenses')
-    ).properties(title='Medical Expenses over Age')
+    ).properties(title='Medical Expenses over Age', width = 700, height = 300
+    ).configure_axis(labelFontSize = 15, titleFontSize = 15
+    ).configure_title(fontSize = 15)
     
     # saving results as png
     meoa.save(output_location + '/1.Expenses_VS_Age.png')
 
     # plotting relationship between Medical Expenses vs BMI
-    bmi = alt.Chart(training_df.groupby(['bmi']).mean().reset_index()).mark_area().encode(
-        alt.X('bmi:Q', title = 'BMI', bin=alt.Bin(maxbins=60)),
-        alt.Y('charges:Q', title = 'Expenses')
-    ).properties(title='Medical Expenses vs BMI')
+    
+    training_df = X_train
+    training_df['charges'] = y_train
+
+    training_df['bmi_cat'] = 'normal'
+    training_df.loc[training_df['bmi'] < 18.5,'bmi_cat'] = 'underweigth'
+    training_df.loc[training_df['bmi'] > 25,'bmi_cat'] = 'overweigth'
+    training_df.loc[training_df['bmi'] > 30,'bmi_cat'] = 'obese'
+
+
+    bmi = alt.Chart(training_df.groupby(['bmi_cat']).mean().reset_index()).mark_bar().encode(
+    alt.X('bmi_cat:N', title = 'BMI', sort=['underweigth', 'normal', 'overweight', 'obese']),
+    alt.Y('charges:Q', title = 'Expenses')
+    ).properties(title='Medical Expenses vs BMI', width = 700, height = 300
+    ).configure_axis(labelFontSize = 20, titleFontSize = 20
+    ).configure_title(fontSize = 20)
 
     # saving results as png
     bmi.save(output_location + '/2.Expenses_VS_BMI.png')
@@ -54,7 +83,9 @@ def main(input_data, output_location):
         alt.X('age:N', title = 'Age'),
         alt.Y('charges:Q', title = 'Expenses'),
         alt.Color('sex:N')
-    ).properties(title='Male and Female Medical Expenses Over Age')
+    ).properties(title='Male and Female Medical Expenses Over Age', width = 700, height = 300
+    ).configure_axis(labelFontSize = 15, titleFontSize = 15
+    ).configure_title(fontSize = 15)
 
     # saving results as png
     exp_gender.save(output_location + '/3.Expenses_VS_Gender.png')
@@ -64,28 +95,22 @@ def main(input_data, output_location):
         alt.X('age:N', title = 'Age'),
         alt.Y('charges:Q', title = 'Expenses'),
         alt.Color('smoker:N')
-    ).properties(title='Smokers & Non Smokers Medical Expenses Over Age')
+    ).properties(title='Smokers & Non Smokers Medical Expenses Over Age', width = 700, height = 300
+    ).configure_axis(labelFontSize = 15, titleFontSize = 15
+    ).configure_title(fontSize = 15)
 
     # saving results as png
     exp_smoke.save(output_location + '/4.Expenses_VS_Smoker.png')
 
-    # plotting relationship between Males & Females BMI Over Age
-    bmi_age = alt.Chart(X_train).mark_point().encode(
-        
-        alt.X('age:N', title = 'Age'),
-        alt.Y('bmi:Q', title = 'BMI'),
-        alt.Color('sex:N')
-    ).properties(title='Males & Females BMI Over Age')
-    
-    # saving results as png
-    bmi_age.save(output_location + '/5.BMI_VS_AGE.png')
 
     # plotting relationship between Male & Female Expenses Over BMI
-    exp_bmi = alt.Chart(training_df.groupby(['bmi','sex']).mean().reset_index()).mark_area().encode(
-        alt.X('bmi:Q', title = 'BMI', bin=alt.Bin(maxbins=60)),
+    exp_bmi = alt.Chart(training_df.groupby(['bmi_cat','sex']).mean().reset_index()).mark_bar().encode(
+        alt.X('bmi_cat:O', title = 'BMI', sort=['underweigth', 'normal', 'overweight', 'obese']),
         alt.Y('charges:Q', title = 'Expenses'),
         alt.Color('sex:N')
-    ).properties(title='Male & Female Expenses Over BMI')
+    ).properties(title='Male & Female Expenses Over BMI', width = 700, height = 300
+    ).configure_axis(labelFontSize = 20, titleFontSize = 20
+    ).configure_title(fontSize = 20)
 
     # saving results as png
     exp_bmi.save(output_location + '/6.EXP_VS_BMI.png')

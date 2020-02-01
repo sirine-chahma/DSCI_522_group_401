@@ -65,6 +65,8 @@ The R and Python programming languages [@R] [@Python] and the following R and Py
 
 To understand the nature of predictors with respect to `Medical Expenses` we will perform Exploratory Data Analysis and we will try to understand if there are some interesting behaviors. To do so, we will use the following python packages :  altair [@Altair2018], matplotlib and seaborn [@Hunter:2007], scikit-learn [@scikit-learn].
 
+ 
+
 ##### 1. Let's see how `Medical Expenses` are changing with `Age`
 
 <html>
@@ -98,6 +100,7 @@ We expect expenditures by smokers should be higher than non-smokers.
 <img src = '../reports/figures/4.Expenses_VS_Smoker.png'>
 </html>
 
+
 **Interesting!!!** - As expected, health expenses of smokers are a lot higher than that of non-smokers.
 
 ##### 5. Let's see the male & female expenses over BMI
@@ -107,6 +110,14 @@ We expect expenditures by smokers should be higher than non-smokers.
 </html>
 
 The highest expenses seem to occur for people from both genders who have a BMI that is higher than 34.
+
+##### 6. Correlation between the variables
+
+<html>
+<img src = '../reports/figures/0.correlation.png'>
+</html>
+
+We can notice that none of the features seem to be correlated with each other. Hence, the features don't seem to be relevant individually.
 
 ## Answering the Inferential Research Questions 
 

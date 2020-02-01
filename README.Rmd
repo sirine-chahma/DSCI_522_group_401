@@ -68,6 +68,7 @@ python src/models/train_predict_medical_expense.py --training_data_file_path="da
   - altair==4.0.0
   - scipy==1.2.3
   - matplotlib==3.2.1
+  - selenium --3.141.0
 - R version 3.6.1 and R packages:
   - knitr==1.26
   - testthat==2.3.1
@@ -79,5 +80,6 @@ python src/models/train_predict_medical_expense.py --training_data_file_path="da
   - ggthemes==4.2.0
       - selenium 3.141.0
       - ChromeDriver 79.0.3945.36
+- chromedriver
 
 # References
