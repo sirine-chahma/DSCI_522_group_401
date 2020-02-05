@@ -52,6 +52,17 @@ To replicate the analysis, clone this GitHub repository, install the
 command at the command line/terminal from the root directory of this
 project:
 
+    make all
+
+To reset the repo to a clean state (which means with no intermediate or
+results files), run the following command at the command line/terminal
+from the root directory of this project:
+
+    make clean
+
+You could also run the following command at the command line/terminal
+from the root directory of this project:
+
     # Download the data
     python get_data.py --url=https://gist.githubusercontent.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41/raw/d42d226d0dd64e7f5395a0eec1b9190a10edbc03/Medical_Cost.csv --file_location=../../data/original/medical_cost_data.csv
 
@@ -95,7 +106,7 @@ project:
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references">
 
 <div id="ref-source">
 
