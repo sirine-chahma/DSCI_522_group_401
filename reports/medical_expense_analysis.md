@@ -554,11 +554,16 @@ StandardScaler
 
 ### Model Selection
 
-After preprocessing and feature transformations, various regression
-models are fitted on the training data with the default parameters. A
-model with the best performance on the training and validation dataset
-is selected for hyper-parameter optimization. A summary of baseline
-performance by various regression models is given below.
+In our project, the target variable is continuous/numeric variable. When
+we have a continuous target variable and we are trying to predict it
+then we can use Regression methods. We are comparing different
+regression algorithms like Linear Regression, Decision Tree, KNN
+Regression and Random Forest Regression. After preprocessing and feature
+transformations, the above regression models fitted on the training data
+with the default parameters. A model with the best performance on the
+training and validation dataset is selected for hyper-parameter
+optimization. A summary of baseline performance by various regression
+models is given below.
 
 <table>
 
@@ -980,7 +985,7 @@ Explained\_variance\_score
 
 A mean absolute error of 2780.3705362 can seem to be a very high score
 for the regression model. However, considering the mean medical expense
-of 1.322343110^{4}, we are not very far from predicting the accurate
+of 1.3223431^{4}, we are not very far from predicting the accurate
 expenses. Moreover, when we take a look at the
 ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score, which is
 equal to 0.826, we realize that this score is pretty high, which means
@@ -1024,7 +1029,7 @@ improvements can be made.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 
 <div id="ref-docopt">
 
