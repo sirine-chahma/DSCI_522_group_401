@@ -146,8 +146,8 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
 
     # Predicted vs actual
     p1 = alt.Chart(prediction_df).mark_circle(size=60, color="green", opacity=0.4).encode(
-                                    alt.X('y_predicted', title = "Predicted Medical Expense ($)"),
-                                    alt.Y('y_actual', title = "Actual Medical Expense ($)") 
+                                    alt.X('y_predicted:Q', title = "Predicted Medical Expense ($)"),
+                                    alt.Y('y_actual:Q', title = "Actual Medical Expense ($)") 
                                     ).properties(
                                     title = "Predicted Vs Actual",
                                     width = 700,
@@ -155,8 +155,8 @@ def main(training_data_file_path, test_data_file_path, results_file_location):
                                     )
 
     p2 = alt.Chart(prediction_df).mark_line(color="red", opacity=1).encode(
-                                    alt.X('y_actual'),
-                                    alt.Y('y_actual') 
+                                    alt.X('y_actual:Q'),
+                                    alt.Y('y_actual:Q') 
                                     ).properties(                             
                                     width = 700,
                                     height = 300

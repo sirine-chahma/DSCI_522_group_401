@@ -22,12 +22,12 @@ is a significant difference in expenses between smokers and non-smokers,
 and between males and females. Our hypothesis tests suggest that at 0.05
 significance level there is significant evidence to conclude that
 smokers incur more medical expenses than non-smokers. Also, there is
-statistically no significant evidence to conclude that the medical
-expenses of men and women are different. For our predictive model, after
-trying different regression models, we found that the decision tree
-regressor performs the best on our data. Using our final tuned model, we
-achieved satisfying results on the test data set, with a ￼ score of
-0.894.
+enough evidence to conclude that the medical expenses of men and women
+are different at a 5% significance level. For our predictive model,
+after trying different regression models, we found that the decision
+tree regressor performs the best on our data. Using our final tuned
+model, we achieved satisfying results on the test data set, with a
+￼score of 0.894.
 
 # Introduction
 
@@ -74,9 +74,26 @@ Expenses` we will perform Exploratory Data Analysis and we will try to
 understand if there are some interesting behaviors. To do so, we will
 use the following python packages : altair (VanderPlas et al. 2018),
 matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
-2011).
+2011). For this exploratory analysis, we decided to gather the different
+BMI into 4 categories in order to make our plots more readable and more
+relevant. For 4 categories are the following :
+
+  - underweight : under 18.5
+    kg/![\\text{m}^2](https://latex.codecogs.com/png.latex?%5Ctext%7Bm%7D%5E2
+    "\\text{m}^2")
+  - normal : 18.5 to 25
+    kg/![\\text{m}^2](https://latex.codecogs.com/png.latex?%5Ctext%7Bm%7D%5E2
+    "\\text{m}^2")
+  - overweight : 25 to 30
+    kg/![\\text{m}^2](https://latex.codecogs.com/png.latex?%5Ctext%7Bm%7D%5E2
+    "\\text{m}^2")
+  - obese : over 30
+    kg/![\\text{m}^2](https://latex.codecogs.com/png.latex?%5Ctext%7Bm%7D%5E2
+    "\\text{m}^2")
 
 ##### 1\. Let’s see how `Medical Expenses` are changing with `Age`
+
+![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png)
 
 ![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png)
 

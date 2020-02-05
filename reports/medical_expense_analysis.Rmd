@@ -20,6 +20,7 @@ library(ggridges)
 library(ggthemes)
 theme_set(theme_minimal())
 set.seed(123)
+
 ```
 
 
@@ -32,19 +33,7 @@ regression_error <- read.csv("../reports/tables/regression_errors.csv")
 
 # Summary
 
-Knowing the estimated medical expenses in advance is very critical for insurance companies to set their yearly premiums to
-beneficiaries. They should make sure that the amount they spent on beneficiaries is less than the total premium they receive. Using
-a predictive model that predicts the expected medical expense of a customer, the insurance companies get an estimate of how
-much premium to charge on each segment of customers such that the cost results in reasonable profit to the company. Using such
-predictive models, they can identify potentially high-risk customers and charge a higher premium from such customers. In this
-project, we attempt to build a regression model that will help us predict the medical expenses of a person given information such
-as age, sex, number of children, smoking habits, and the region where the person is from. In the process, we are also interested in
-figuring out if there is a significant difference in expenses between smokers and non-smokers, and between males and females.
-Our hypothesis tests suggest that at 0.05 significance level there is significant evidence to conclude that smokers incur more
-medical expenses than non-smokers. Also, there is statistically no significant evidence to conclude that the medical expenses of
-men and women are different. For our predictive model, after trying different regression models, we found that the decision tree
-regressor performs the best on our data. Using our final tuned model, we achieved satisfying results on the test data set, with a ￼
-score of 0.894. 
+Knowing the estimated medical expenses in advance is very critical for insurance companies to set their yearly premiums to beneficiaries. They should make sure that the amount they spent on beneficiaries is less than the total premium they receive. Using a predictive model that predicts the expected medical expense of a customer, the insurance companies get an estimate of how much premium to charge on each segment of customers such that the cost results in reasonable profit to the company. Using such predictive models, they can identify potentially high-risk customers and charge a higher premium from such customers. In this project, we attempt to build a regression model that will help us predict the medical expenses of a person given information such as age, sex, number of children, smoking habits, and the region where the person is from. In the process, we are also interested in figuring out if there is a significant difference in expenses between smokers and non-smokers, and between males and females. Our hypothesis tests suggest that at 0.05 significance level there is significant evidence to conclude that smokers incur more medical expenses than non-smokers. Also, there is enough evidence to conclude that the medical expenses of men and women are different at a 5% significance level. For our predictive model, after trying different regression models, we found that the decision tree regressor performs the best on our data. Using our final tuned model, we achieved satisfying results on the test data set, with a ￼score of 0.894. 
 
 # Introduction
 
@@ -64,10 +53,20 @@ The R and Python programming languages [@R] [@Python] and the following R and Py
 ## Exploratory analysis on the training data set 
 
 To understand the nature of predictors with respect to `Medical Expenses` we will perform Exploratory Data Analysis and we will try to understand if there are some interesting behaviors. To do so, we will use the following python packages :  altair [@Altair2018], matplotlib and seaborn [@Hunter:2007], scikit-learn [@scikit-learn].
+For this exploratory analysis, we decided to gather the different BMI into 4 categories in order to make our plots more readable and more relevant. For 4 categories are the following : 
 
+  - underweight : under 18.5 kg/$\text{m}^2$
+  - normal : 18.5 to 25 kg/$\text{m}^2$
+  - overweight : 25 to 30 kg/$\text{m}^2$
+  - obese : over 30 kg/$\text{m}^2$
  
 
 ##### 1. Let's see how `Medical Expenses` are changing with `Age` 
+
+```{r fig.cap='Figure 1 : Expenses VS Age'}
+knitr::include_graphics('../reports/figures/1.Expenses_VS_Age.png')
+
+```
 
 ![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png) 
 
@@ -180,8 +179,7 @@ kableExtra::kable(transformations)
 *Figure 9 : summary of the feature transformations*
 
 ### Model Selection
-After preprocessing and feature transformations, various regression models are fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for
-hyper-parameter optimization. A summary of baseline performance by various regression models is given below.
+After preprocessing and feature transformations, various regression models are fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for hyper-parameter optimization. A summary of baseline performance by various regression models is given below.
 
 ```{r model selection}
 model_base <- read.csv("../reports/tables/regression_models_base_errors.csv")
@@ -252,6 +250,4 @@ From the predicted Vs Actual plot, we can see ther are some errors in prediction
 The model that we built for predicting the medical expenses only serves as a baseline. The limitations are mainly due to the data. We have a very small dataset with very few features. For building a deployment-ready model for practical applications we need to collect more data. Apart from this, we can improve the model by performing feature engineering. In this project, no new features were created apart from polynomial features and one-hot-encoded features. With some research on the domain, we can come up with entirely new features or we can combine existing features to get new features. Also, we haven't done any feature selection in this project. Data collection and feature engineering are the most critical steps in building any machine earning product. However, due to the limited time available, we could not allocate sufficient resources for feature engineering. Moreover, we haven't performed model selection and hyper-parameter tuning in this project. SO there is a lot of scope for future works in this project.  Overall, this serves as a very good base model on which further improvements can be made.
 
 # References 
-
-
 
