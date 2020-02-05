@@ -78,72 +78,60 @@ matplotlib and seaborn (Hunter 2007), scikit-learn (Pedregosa et al.
 
 ##### 1\. Let’s see how `Medical Expenses` are changing with `Age`
 
-<html>
+![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png)
 
-<img src = '../reports/figures/1.Expenses_VS_Age.png'>
-
-</html>
+*Figure 1 : Expenses VS Age*
 
 It can be observed that the `Medical Expense` of people is increasing,
-as `Age`
-increases.
+as `Age` increases.
 
 ##### 2\. Let’s see how `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
-<html>
+![Figure 2 : Expenses VS BMI](../reports/figures/2.Expenses_VS_BMI.png)
 
-<img src = '../reports/figures/2.Expenses_VS_BMI.png'>
+*Figure 2 : Expenses VS BMI*
 
-</html>
-
-The highest expenses seem to occur for people who have a higher
-BMI.
+The highest expenses seem to occur for people who have a higher BMI.
 
 ##### 3\. Let’s see how much money males and females spending on medical treatments between 18-64 Years
 
-<html>
+![Figure 3 :
+Expenses\_VS\_Gender](../reports/figures/3.Expenses_VS_Gender.png)
 
-<img src = '../reports/figures/3.Expenses_VS_Gender.png'>
-
-</html>
+*Figure 3 : Expenses\_VS\_Gender*
 
 The expenses seem to grow with age for both males and females. It looks
 like Males in their **20’s & 60’s** tend to pay more on their `Medical
 Expenses` than Females. Females in their **40’s** are paying more than
-Males on their `Medical
-Expenses`.
+Males on their `Medical Expenses`.
 
 ##### 4\. Let’s see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
 We expect expenditures by smokers should be higher than non-smokers.
 
-<html>
+![Figure 4 : Expenses VS
+Smoker](../reports/figures/4.Expenses_VS_Smoker.png)
 
-<img src = '../reports/figures/4.Expenses_VS_Smoker.png'>
-
-</html>
+*Figure 4 : Expenses VS Smoker*
 
 **Interesting\!\!\!** - As expected, health expenses of smokers are a
 lot higher than that of non-smokers.
 
 ##### 5\. Let’s see the male & female expenses over BMI
 
-<html>
+![Figure 5 : Expenses VS BMI and
+Sex](../reports/figures/6.EXP_VS_BMI.png)
 
-<img src = '../reports/figures/6.EXP_VS_BMI.png'>
-
-</html>
+*Figure 5 : Expenses VS BMI and Sex*
 
 The highest expenses seem to occur for people from both genders who have
 a BMI that is higher than 34.
 
 ##### 6\. Correlation between the variables
 
-<html>
+![Figure 6 : Correlation heatmap](../reports/figures/0.correlation.png)
 
-<img src = '../reports/figures/0.correlation.png'>
-
-</html>
+*Figure 6 : Correlation heatmap*
 
 We can notice that none of the features seem to be correlated with each
 other. Hence, the features don’t seem to be relevant individually.
@@ -156,8 +144,7 @@ two questions:
   - Are medical expenses of smokers are statistically higher than
     non-smokers?
   - Is there a significant statistical difference in expenses between
-    males and females?
-<br>
+    males and females? <br>
 
 ##### 1\. Are medical expenses of smokers are statistically higher than non-smokers?
 
@@ -291,6 +278,9 @@ greater
 
 </table>
 
+*Figure 7 : Results of the test for the expenses of smokers VS
+non-smokers*
+
 The exact p-value is
 ![4.6718552\\times 10^{-100}](https://latex.codecogs.com/png.latex?4.6718552%5Ctimes%2010%5E%7B-100%7D
 "4.6718552\\times 10^{-100}") which is very close to 0. However, while
@@ -300,8 +290,7 @@ We can observe that the p-value is less than the significance level of
 ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%"). Hence, we
 can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
 hypothesis and conclude that we have enough evidence to say the mean
-expenses of smoker is higher than the mean expenses of
-non-smokers.
+expenses of smoker is higher than the mean expenses of non-smokers.
 
 ##### 2\. Is there a significant statistical difference in expenses between males and females?
 
@@ -459,6 +448,8 @@ two.sided
 
 </table>
 
+*Figure 8 : Results of the test for the expenses of males VS females*
+
 The exact p-value is
 ![0.035841](https://latex.codecogs.com/png.latex?0.035841 "0.035841")
 which is less than the significance level of
@@ -541,6 +532,8 @@ StandardScaler
 </tbody>
 
 </table>
+
+*Figure 9 : summary of the feature transformations*
 
 ### Model Selection
 
@@ -722,6 +715,9 @@ training\_time(s)
 
 </table>
 
+*Figure 10 : summary of baseline performance by various regression
+models*
+
 Based on the above scores, DecisionTreeRegressor was selected as the
 final model and hyper-parameter tuning is done on it. In the data
 analysis pipeline, selection of the model from the base models is
@@ -808,6 +804,8 @@ regressor\_\_min\_samples\_split
 </tbody>
 
 </table>
+
+*Figure 11 : best parameters obtained from hyper-parameter optimization*
 
 # Results
 
@@ -961,6 +959,8 @@ Explained\_variance\_score
 
 </table>
 
+*Figure 12 : model evaluations on train and test data*
+
 A mean absolute error of 2780.3705362 can seem to be a very high score
 for the regression model. However, considering the mean medical expense
 of 1.322343110^{4}, we are not very far from predicting the accurate
@@ -969,12 +969,17 @@ expenses. Moreover, when we take a look at the
 equal to 0.826, we realize that this score is pretty high, which means
 that our model explains most of the variability of our response data
 around its mean. The goodness of fit of the regression model is analzsed
-in the following
-section.
+in the following section.
 
 ### Goodness of fit
 
-![](../reports/figures/predicted_vs_actual_plot.png)<!-- -->![](../reports/figures/residual_plot.png)<!-- -->
+![](../reports/figures/predicted_vs_actual_plot.png)<!-- -->
+
+*Figure 13 : Predicted VS actual values*
+
+![](../reports/figures/residual_plot.png)<!-- -->
+
+*Figure 14 : Plot of the residuals*
 
 From the predicted Vs Actual plot, we can see ther are some errors in
 prediction at lower expenses. Overall the model does a pretty decent job
@@ -1014,7 +1019,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
+in Science & Engineering* 9 (3): 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -1055,7 +1060,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-The Open Journal. <https://doi.org/10.21105/joss.01057>.
+<https://doi.org/10.21105/joss.01057>.
 
 </div>
 

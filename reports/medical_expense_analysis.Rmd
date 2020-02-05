@@ -67,27 +67,27 @@ To understand the nature of predictors with respect to `Medical Expenses` we wil
 
  
 
-##### 1. Let's see how `Medical Expenses` are changing with `Age`
+##### 1. Let's see how `Medical Expenses` are changing with `Age` 
 
-<html>
-<img src = '../reports/figures/1.Expenses_VS_Age.png'>
-</html>
+![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png) 
+
+*Figure 1 : Expenses VS Age* 
 
 It can be observed that the `Medical Expense` of people is increasing, as `Age` increases.
 
 ##### 2. Let's see how  `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
-<html>
-<img src = '../reports/figures/2.Expenses_VS_BMI.png'>
-</html>
+![Figure 2 : Expenses VS BMI](../reports/figures/2.Expenses_VS_BMI.png)
+
+*Figure 2 : Expenses VS BMI*
 
 The highest expenses seem to occur for people who have a higher BMI.
 
 ##### 3. Let's see how much money males and females spending on medical treatments between 18-64 Years
 
-<html>
-<img src = '../reports/figures/3.Expenses_VS_Gender.png'>
-</html>
+![Figure 3 : Expenses_VS_Gender](../reports/figures/3.Expenses_VS_Gender.png)
+
+*Figure 3 : Expenses_VS_Gender*
 
 The expenses seem to grow with age for both males and females. It looks like Males in their **20's & 60's** tend to pay more on their `Medical Expenses` than Females. Females in their **40's** are paying more than Males on their `Medical Expenses`.
 
@@ -96,26 +96,25 @@ The expenses seem to grow with age for both males and females. It looks like Mal
 
 We expect expenditures by smokers should be higher than non-smokers.
 
-<html>
-<img src = '../reports/figures/4.Expenses_VS_Smoker.png'>
-</html>
+![Figure 4 : Expenses VS Smoker](../reports/figures/4.Expenses_VS_Smoker.png)
 
+*Figure 4 : Expenses VS Smoker*
 
 **Interesting!!!** - As expected, health expenses of smokers are a lot higher than that of non-smokers.
 
 ##### 5. Let's see the male & female expenses over BMI
 
-<html>
-<img src = '../reports/figures/6.EXP_VS_BMI.png'>
-</html>
+![Figure 5 : Expenses VS BMI and Sex](../reports/figures/6.EXP_VS_BMI.png)
+
+*Figure 5 : Expenses VS BMI and Sex*
 
 The highest expenses seem to occur for people from both genders who have a BMI that is higher than 34.
 
 ##### 6. Correlation between the variables
 
-<html>
-<img src = '../reports/figures/0.correlation.png'>
-</html>
+![Figure 6 : Correlation heatmap](../reports/figures/0.correlation.png)
+
+*Figure 6 : Correlation heatmap*
 
 We can notice that none of the features seem to be correlated with each other. Hence, the features don't seem to be relevant individually.
 
@@ -138,6 +137,7 @@ Our null hypothesis states that the mean expense of smokers is less than equal t
 hypothesis_1 <- readr::read_csv('../reports/tables/1.hypothesis_smokers.csv')
 kableExtra::kable(hypothesis_1)
 ```
+*Figure 7 : Results of the test for the expenses of smokers VS non-smokers*
 
 The exact p-value is $`r hypothesis_1$p.value`$ which is very close to 0. However, while rendering the output to the table above it treats it as 0.
 
@@ -154,6 +154,7 @@ Our Null hypothesis states that the mean expenses of males are equal to mean exp
 hypothesis_2 <- readr::read_csv('../reports/tables/2.hypothesis_sex.csv')
 kableExtra::kable(hypothesis_2)
 ```
+*Figure 8 : Results of the test for the expenses of males VS females*
 
 The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between Males and Females is not same. 
 
@@ -176,6 +177,8 @@ transformations <- transformations %>%
 kableExtra::kable(transformations)
 ```
 
+*Figure 9 : summary of the feature transformations*
+
 ### Model Selection
 After preprocessing and feature transformations, various regression models are fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for
 hyper-parameter optimization. A summary of baseline performance by various regression models is given below.
@@ -185,6 +188,8 @@ model_base <- read.csv("../reports/tables/regression_models_base_errors.csv")
 model_base <- model_base %>% rename("Error Metrics"=X )
 kableExtra::kable(model_base)
 ```
+
+*Figure 10 : summary of baseline performance by various regression models*
 
 Based on the above scores, DecisionTreeRegressor was selected as the final model and hyper-parameter tuning is done on it. In the data analysis pipeline, selection of the model from the base models is currently done manually. 
 
@@ -196,6 +201,8 @@ hp <- read.csv("../reports/tables/hyperparameters.csv")
 hp <- hp %>% rename("Hyper-parameter"=X)
 kableExtra::kable(hp)
 ```
+
+*Figure 11 : best parameters obtained from hyper-parameter optimization*
 
 # Results 
 
@@ -219,14 +226,24 @@ mean_exp <- test_data %>%
 kableExtra::kable(results)
 ```
 
+*Figure 12 : model evaluations on train and test data*
+
 A mean absolute error of `r mae` can seem to be a very high score for the regression model. However, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses.  Moreover, when we take a look at the $R^2$ score, which is equal to `r round(regression_error$test_data[4], 3)`, we realize that this score is pretty high, which means that our model explains most of the variability of our response data around its mean. The goodness of fit of the regression model is analzsed in the following section.
 
 ### Goodness of fit
-```{r  plots}
+```{r  plot_predict_vs_actual}
 knitr::include_graphics("../reports/figures/predicted_vs_actual_plot.png")
+
+```
+
+*Figure 13 : Predicted VS actual values*
+
+```{r  plot_residual}
 knitr::include_graphics("../reports/figures/residual_plot.png")
 
 ```
+
+*Figure 14 : Plot of the residuals*
 
 From the predicted Vs Actual plot, we can see ther are some errors in prediction at lower expenses. Overall the model does a pretty decent job of predicting the medical expenses given the patient information. 
 
