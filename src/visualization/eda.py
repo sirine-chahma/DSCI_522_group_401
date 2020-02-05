@@ -108,13 +108,16 @@ def main(input_data, output_location):
 
 
     # plotting relationship between Male & Female Expenses Over BMI
+    
     exp_bmi = alt.Chart(training_df.groupby(['bmi_cat','sex']).mean().reset_index()).mark_bar().encode(
-        alt.X('bmi_cat:O', title = 'BMI', sort=['underweight', 'normal', 'overweight', 'obese'], axis=alt.Axis(labelAngle=0)),
+        alt.X('sex:N', title = '', sort=['underweight', 'normal', 'overweight', 'obese'], axis=alt.Axis(labelAngle=0)),
         alt.Y('charges:Q', title = 'Expenses'),
-        alt.Color('sex:N')
-    ).properties(title='Male & Female Expenses Over BMI', width = 700, height = 300
-    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+        alt.Color('sex:N'), 
+        alt.Column('bmi_cat:N', sort=['underweight', 'normal', 'overweight', 'obese'])
+    ).properties(title='Male & Female Expenses Over BMI', width = 150, height = 300
+    ).configure_axis(labelFontSize = 15, titleFontSize = 15
     ).configure_title(fontSize = 18)
+
 
     # saving results as png
     exp_bmi.save(output_location + '/6.EXP_VS_BMI.png')
