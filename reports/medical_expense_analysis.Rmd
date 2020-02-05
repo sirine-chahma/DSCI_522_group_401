@@ -180,7 +180,7 @@ kableExtra::kable(transformations)
 *Figure 9 : summary of the feature transformations*
 
 ### Model Selection
-After preprocessing and feature transformations, various regression models are fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for
+In our project, the target variable is continuous/numeric variable. When we have a continuous target variable and we are trying to predict it then we can use Regression methods. We are comparing different regression algorithms like Linear Regression, Decision Tree, KNN Regression and Random Forest Regression. After preprocessing and feature transformations, the above regression models fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for
 hyper-parameter optimization. A summary of baseline performance by various regression models is given below.
 
 ```{r model selection}
