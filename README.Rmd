@@ -32,7 +32,20 @@ The Data we are using for this analysis is used in the book Machine Learning wit
 
 ## Usage
 
+
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
+
+```
+make all
+```
+
+To reset the repo to a clean state (which means with no intermediate or results files), run the following command at the command line/terminal from the root directory of this project:
+
+```
+make clean
+```
+
+You could also run the following command at the command line/terminal from the root directory of this project:
 
 ```{}
 # Download the data
