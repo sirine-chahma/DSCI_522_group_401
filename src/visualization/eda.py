@@ -40,23 +40,23 @@ def main(input_data, output_location):
     cor = cor.reset_index()
     cor = pd.melt(cor, id_vars="index")
     cor_map = alt.Chart(cor).mark_rect().encode(
-    alt.X('index:O', title=''),
+    alt.X('index:O', title='', axis=alt.Axis(labelAngle=0)),
     alt.Y('variable:O', title=''),
     alt.Color('value:Q',scale = alt.Scale(domain=[0, 1], scheme = 'purplered'))
     ).properties(title="Correlation map of the features", width = 700, height = 300
-    ).configure_axis(labelFontSize = 15, titleFontSize = 15
-    ).configure_title(fontSize = 15)
+    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+    ).configure_title(fontSize = 18)
     
     # saving results as png
     cor_map.save(output_location + '/0.correlation.png')
 
     # plotting relationship between Medical Expenses over Age
     meoa = alt.Chart(training_df.groupby(['age']).mean().reset_index()).mark_line(point = True).encode(
-        alt.X('age:N', title = 'Age'),
+        alt.X('age:N', title = 'Age', axis=alt.Axis(labelAngle=0)),
         alt.Y('charges:Q', title = 'Expenses')
     ).properties(title='Medical Expenses over Age', width = 700, height = 300
-    ).configure_axis(labelFontSize = 15, titleFontSize = 15
-    ).configure_title(fontSize = 15)
+    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+    ).configure_title(fontSize = 18)
     
     # saving results as png
     meoa.save(output_location + '/1.Expenses_VS_Age.png')
@@ -67,41 +67,41 @@ def main(input_data, output_location):
     training_df['charges'] = y_train
 
     training_df['bmi_cat'] = 'normal'
-    training_df.loc[training_df['bmi'] < 18.5,'bmi_cat'] = 'underweigth'
-    training_df.loc[training_df['bmi'] > 25,'bmi_cat'] = 'overweigth'
+    training_df.loc[training_df['bmi'] < 18.5,'bmi_cat'] = 'underweight'
+    training_df.loc[training_df['bmi'] > 25,'bmi_cat'] = 'overweight'
     training_df.loc[training_df['bmi'] > 30,'bmi_cat'] = 'obese'
 
 
     bmi = alt.Chart(training_df.groupby(['bmi_cat']).mean().reset_index()).mark_bar().encode(
-    alt.X('bmi_cat:N', title = 'BMI', sort=['underweigth', 'normal', 'overweight', 'obese']),
+    alt.X('bmi_cat:N', title = 'BMI', sort=['underweight', 'normal', 'overweight', 'obese'], axis=alt.Axis(labelAngle=0)),
     alt.Y('charges:Q', title = 'Expenses')
     ).properties(title='Medical Expenses vs BMI', width = 700, height = 300
-    ).configure_axis(labelFontSize = 20, titleFontSize = 20
-    ).configure_title(fontSize = 20)
+    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+    ).configure_title(fontSize = 18)
 
     # saving results as png
     bmi.save(output_location + '/2.Expenses_VS_BMI.png')
 
     # plotting relationship between Male and Female Medical Expenses Over Age
     exp_gender = alt.Chart(training_df.groupby(['age','sex']).mean().reset_index()).mark_line(point = True).encode(
-        alt.X('age:N', title = 'Age'),
+        alt.X('age:N', title = 'Age', axis=alt.Axis(labelAngle=0)),
         alt.Y('charges:Q', title = 'Expenses'),
         alt.Color('sex:N')
     ).properties(title='Male and Female Medical Expenses Over Age', width = 700, height = 300
-    ).configure_axis(labelFontSize = 15, titleFontSize = 15
-    ).configure_title(fontSize = 15)
+    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+    ).configure_title(fontSize = 18)
 
     # saving results as png
     exp_gender.save(output_location + '/3.Expenses_VS_Gender.png')
 
     # plotting relationship between Smokers & Non Smokers Medical Expenses Over Age
     exp_smoke = alt.Chart(training_df.groupby(['age','smoker']).mean().reset_index()).mark_line(point = True).encode(
-        alt.X('age:N', title = 'Age'),
+        alt.X('age:N', title = 'Age', axis=alt.Axis(labelAngle=0)),
         alt.Y('charges:Q', title = 'Expenses'),
-        alt.Color('smoker:N')
+        alt.Color('smoker:N', sort=['yes'])
     ).properties(title='Smokers & Non Smokers Medical Expenses Over Age', width = 700, height = 300
-    ).configure_axis(labelFontSize = 15, titleFontSize = 15
-    ).configure_title(fontSize = 15)
+    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+    ).configure_title(fontSize = 18)
 
     # saving results as png
     exp_smoke.save(output_location + '/4.Expenses_VS_Smoker.png')
@@ -109,12 +109,12 @@ def main(input_data, output_location):
 
     # plotting relationship between Male & Female Expenses Over BMI
     exp_bmi = alt.Chart(training_df.groupby(['bmi_cat','sex']).mean().reset_index()).mark_bar().encode(
-        alt.X('bmi_cat:O', title = 'BMI', sort=['underweigth', 'normal', 'overweight', 'obese']),
+        alt.X('bmi_cat:O', title = 'BMI', sort=['underweight', 'normal', 'overweight', 'obese'], axis=alt.Axis(labelAngle=0)),
         alt.Y('charges:Q', title = 'Expenses'),
         alt.Color('sex:N')
     ).properties(title='Male & Female Expenses Over BMI', width = 700, height = 300
-    ).configure_axis(labelFontSize = 20, titleFontSize = 20
-    ).configure_title(fontSize = 20)
+    ).configure_axis(labelFontSize = 12, titleFontSize = 15
+    ).configure_title(fontSize = 18)
 
     # saving results as png
     exp_bmi.save(output_location + '/6.EXP_VS_BMI.png')
