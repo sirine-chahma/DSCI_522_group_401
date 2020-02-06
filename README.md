@@ -60,27 +60,6 @@ from the root directory of this project:
 
     make clean
 
-You could also run the following command at the command line/terminal
-from the root directory of this project:
-
-    # Download the data
-    python get_data.py --url=https://gist.githubusercontent.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41/raw/d42d226d0dd64e7f5395a0eec1b9190a10edbc03/Medical_Cost.csv --file_location=../../data/original/medical_cost_data.csv
-
-    # Split the data
-    Rscript src/data/pre_processing_data.R --input_file=data/original/medical_cost_data.csv --output_dir=data/processed
-
-    # EDA Script
-    python src/visualization/eda.py --input_data=data/processed/medical_cost_data_train.csv --output_location=reports/figures
-
-    # Inferences
-    Rscript src/inferences/inferences.R --input_file=data/original/medical_cost_data.csv --output_dir=reports/tables/
-
-    # Predictive Modeling
-    python src/models/train_predict_medical_expense.py --training_data_file_path="data/processed/medical_cost_data_train.csv" --test_data_file_path="data/processed/medical_cost_data_test.csv" --results_file_location="reports"
-
-    # Report
-    Rscript -e "rmarkdown::render('reports/medical_expense_analysis.Rmd')"
-
 ## Dependencies
 
   - Python 3.7.3 and Python packages:
