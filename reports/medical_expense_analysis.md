@@ -1,5 +1,5 @@
 Medical Expense Data Analysis and Predictive Modeling
-================
+
 author: Karanpal Singh, Sreejith Munthikodu, Sirine Chahma </br>
 2020/01/24
 
@@ -32,15 +32,15 @@ model, we achieved satisfying results on the test data set, with a
 # Introduction
 
 In this project, we attempt to build a predictive model that will answer
-the following question : “Given a person’s information, what would be
-his/her predicted medical expenses?”. Ansewering this question can be
-important for insurance compagnies who wants to evaluate the risk to
-insure a certain person regarding to his/her possible medical expenses.
+the following question: “Given a person’s information, what would be
+his/her predicted medical expenses?”. Answering this question can be
+important for insurance companies to set the insurance premium based on
+the risk associated with each customer.
 
-We also wanted to figure out if there is a significant difference of
+We also wanted to figure out if there is a significant difference in
 expenses between smokers and non-smokers, and between males and females.
-Therefore, we led two inferential studies asside in order to find an
-aswer to those questions.
+Therefore, we considered two inferential studies in order to answer
+those questions.
 
 # Data
 
@@ -102,7 +102,8 @@ relevant. For 4 categories are the following :
 </center>
 
 It can be observed that the `Medical Expense` of people is increasing,
-as `Age` increases.
+as `Age`
+increases.
 
 ##### 2\. Let’s see how `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
@@ -114,7 +115,8 @@ Figure 2 : Expenses VS BMI\*
 
 </center>
 
-The highest expenses seem to occur for people who have a higher BMI.
+The highest expenses seem to occur for people who have a higher
+BMI.
 
 ##### 3\. Let’s see how much money males and females spending on medical treatments between 18-64 Years
 
@@ -130,7 +132,8 @@ Expenses\_VS\_Gender](../reports/figures/3.Expenses_VS_Gender.png)
 The expenses seem to grow with age for both males and females. It looks
 like Males in their **20’s & 60’s** tend to pay more on their `Medical
 Expenses` than Females. Females in their **40’s** are paying more than
-Males on their `Medical Expenses`.
+Males on their `Medical
+Expenses`.
 
 ##### 4\. Let’s see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
@@ -183,7 +186,8 @@ two questions:
   - Are medical expenses of smokers are statistically higher than
     non-smokers?
   - Is there a significant statistical difference in expenses between
-    males and females? <br>
+    males and females?
+<br>
 
 ##### 1\. Are medical expenses of smokers are statistically higher than non-smokers?
 
@@ -333,7 +337,8 @@ We can observe that the p-value is less than the significance level of
 ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%"). Hence, we
 can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
 hypothesis and conclude that we have enough evidence to say the mean
-expenses of smoker is higher than the mean expenses of non-smokers.
+expenses of smoker is higher than the mean expenses of
+non-smokers.
 
 ##### 2\. Is there a significant statistical difference in expenses between males and females?
 
@@ -588,14 +593,14 @@ StandardScaler
 
 ### Model Selection
 
-In our project, the target variable is continuous/numeric variable. When
-we have a continuous target variable and we are trying to predict it
-then we can use Regression methods. We are comparing different
-regression algorithms like Linear Regression, Decision Tree, KNN
-Regression and Random Forest Regression. After preprocessing and feature
-transformations, the above regression models fitted on the training data
-with the default parameters. A model with the best performance on the
-training and validation dataset is selected for hyper-parameter
+In our project, the target variable is a continuous/numeric variable. We
+can use regression methods to predict a continuous response variable.
+Here, in model selection, we are comparing different regression
+algorithms such as Linear Regression, Decision Tree, KNN Regression and
+Random Forest Regression. After preprocessing and feature
+transformation, the above regression models are fitted on the training
+data with the default parameters. A model with the best performance on
+the training and validation dataset is selected for hyper-parameter
 optimization. A summary of baseline performance by various regression
 models is given below.
 
@@ -779,9 +784,18 @@ models*
 </center>
 
 Based on the above scores, DecisionTreeRegressor was selected as the
-final model and hyper-parameter tuning is done on it. In the data
-analysis pipeline, selection of the model from the base models is
-currently done manually.
+final model and hyper-parameter tuning was done on it. In the data
+analysis pipeline, the selection of the model from the base models is
+currently done manually. We decided to choose DecisionTreeRegressor
+because of its low training and validation score. All other models have
+considerable under-fit whereas the DecisionTreeRegressor was
+over-fitting on the training data. Decision tree models require less
+preprocessing of the data compared to other models. Also, decision tree
+models are more interpretable than ensemble-based models such as Random
+Forest and Gradient Boosted Decision Trees. We decided to address the
+over-fit issues in the DecisionTreeRegressor during the hyper-parameter
+tuning. The hyper-parameters `min_samples_split` and `max_depth` are
+chosen to address the over-fitting issue.
 
 ### hyper-parameter tuning
 
@@ -1027,17 +1041,46 @@ Explained\_variance\_score
 
 *Figure 12 : model evaluations on train and test data*
 
+
 </center>
 
-A mean absolute error of 2780.3705362 can seem to be a very high score
-for the regression model. However, considering the mean medical expense
-of 1.322343110^{4}, we are not very far from predicting the accurate
-expenses. Moreover, when we take a look at the
-![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score, which is
-equal to 0.826, we realize that this score is pretty high, which means
-that our model explains most of the variability of our response data
-around its mean. The goodness of fit of the regression model is analzsed
-in the following section.
+We used several regression metrics for evaluating our model. Firstly, we
+used mean absolute error, which is the average of the absolute values of
+the difference between predicted expenses and actual expenses. For our
+predictive model, we got a mean absolute error of 2780.3705362. Although
+it seems like a high error, considering the mean medical expense of
+1.322343110^{4}, we are not very far from predicting the accurate
+expenses. Secondly, we used the mean squared error as the evaluation
+metric. For our final model, we got a mean squared error of
+2.506712910^{7}. The mean squared error is much higher than mean
+absolute error because the former is the average of the sum of the
+squares of the differences between the predicted expenses and actual
+expenses. This metric cannot be compared directly to mean absolute error
+because both the metrics have different units of measurement. Then we
+used root mean squared error, which is the square root of the mean
+squared error. We got a root mean squared error of 5006.7084095. We can
+compare this metric directly to the mean absolute error. However, the
+root means square penalizes the model more for making larger errors.
+Choosing the right metric between these two to report the model
+performance often requires domain knowledge and depends on how the
+predicted values are used in real life.
+
+The last two metrics we used to report our model performance rely on the
+capability of our models to explain the variance of the response
+variable. ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score
+of 0.8261748 means our model explains 82.6174847 % of the variance in
+the response variable. This is pretty good as the model is able to
+explain most of the variance in the medical expenses in the test
+dataset. However, we can not rely entirely on
+![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score to
+conclude on the performance of our model. It should always be compared
+with the residual plot, which is shown in the next section of this
+report. Our final metric, explained variance score, is very similar to
+the ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") score. If
+the expected value of the error terms is zero, both these metrics are
+exactly the same. In our model, we got these metrics almost the same,
+indicating that the mean value of the error is close to zero.
+
 
 ### Goodness of fit
 
@@ -1055,11 +1098,17 @@ in the following section.
 
 *Figure 14 : Plot of the residuals*
 
+
 </center>
 
-From the predicted Vs Actual plot, we can see ther are some errors in
-prediction at lower expenses. Overall the model does a pretty decent job
-of predicting the medical expenses given the patient information.
+From the residual plot above, we can see that the model is accurate in
+predicting the expenses of most of the samples in the test dataset.
+There are more points on the positive side than the negative side. This
+indicates that our model is underestimating more often than
+overestimating when making an error. Overall the model does a pretty
+decent job of predicting the medical expenses given the patient
+information.
+
 
 # Limitations and Future Directions
 
@@ -1095,7 +1144,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3): 90–95.
+in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -1136,7 +1185,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-<https://doi.org/10.21105/joss.01057>.
+The Open Journal. <https://doi.org/10.21105/joss.01057>.
 
 </div>
 
