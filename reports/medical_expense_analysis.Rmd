@@ -37,9 +37,9 @@ Knowing the estimated medical expenses in advance is very critical for insurance
 
 # Introduction
 
-In this project, we attempt to build a predictive model that will answer the following question : "Given a person's information, what would be his/her predicted medical expenses?". Ansewering this question can be important for insurance compagnies who wants to evaluate the risk to insure a certain person regarding to his/her possible medical expenses. 
+In this project, we attempt to build a predictive model that will answer the following question: "Given a person's information, what would be his/her predicted medical expenses?". Answering this question can be important for insurance companies to set the insurance premium based on the risk associated with each customer.  
 
-We also wanted to figure out if there is a significant difference of expenses between smokers and non-smokers, and between males and females. Therefore, we led two inferential studies asside in order to find an aswer to those questions.
+We also wanted to figure out if there is a significant difference in expenses between smokers and non-smokers, and between males and females. Therefore, we considered two inferential studies in order to answer those questions.
 
 # Data
 The Data we are using for this analysis is used in the book Machine Learning with R by Brett Lantz[@source]; which is a book that provides an introduction to machine learning using R. All of these datasets are in the public domain. The data explain the cost of a small sample of USA population Medical Insurance Cost based on attributes like age, sex, number of children etc. Additional information about this data can be found [here](https://gist.github.com/meperezcuello/82a9f1c1c473d6585e750ad2e3c05a41).
@@ -180,8 +180,7 @@ kableExtra::kable(transformations)
 
 ### Model Selection
 
-In our project, the target variable is continuous/numeric variable. When we have a continuous target variable and we are trying to predict it then we can use Regression methods. We are comparing different regression algorithms like Linear Regression, Decision Tree, KNN Regression and Random Forest Regression. After preprocessing and feature transformations, the above regression models fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for
-hyper-parameter optimization. A summary of baseline performance by various regression models is given below.
+In our project, the target variable is a continuous/numeric variable. We can use regression methods to predict a continuous response variable. Here, in model selection, we are comparing different regression algorithms such as Linear Regression, Decision Tree, KNN Regression and Random Forest Regression. After preprocessing and feature transformation, the above regression models are fitted on the training data with the default parameters. A model with the best performance on the training and validation dataset is selected for hyper-parameter optimization. A summary of baseline performance by various regression models is given below.
 
 ```{r model selection}
 model_base <- read.csv("../reports/tables/regression_models_base_errors.csv")
@@ -191,7 +190,7 @@ kableExtra::kable(model_base)
 
 *Figure 10 : summary of baseline performance by various regression models*
 
-Based on the above scores, DecisionTreeRegressor was selected as the final model and hyper-parameter tuning is done on it. In the data analysis pipeline, selection of the model from the base models is currently done manually. 
+Based on the above scores, DecisionTreeRegressor was selected as the final model and hyper-parameter tuning was done on it. In the data analysis pipeline, the selection of the model from the base models is currently done manually. We decided to choose  DecisionTreeRegressor because of its low training and validation score. All other models have considerable under-fit whereas the  DecisionTreeRegressor was over-fitting on the training data. Decision tree models require less preprocessing of the data compared to other models. Also, decision tree models are more interpretable than ensemble-based models such as Random Forest and Gradient Boosted Decision Trees. We decided to address the over-fit issues in the  DecisionTreeRegressor during the hyper-parameter tuning. The hyper-parameters `min_samples_split` and `max_depth` are chosen to address the over-fitting issue. 
 
 ### hyper-parameter tuning
 Hyper-parameter optimization was performed using `GridSearchCV`. The best parameters obtained from hyper-parameter optimization are given below.
@@ -217,6 +216,26 @@ mae <- results %>%
   select(test_data) %>%
   slice(1)
 
+# Mean squared error on test data
+mse <- results %>%
+  select(test_data) %>%
+  slice(2)
+
+# Root mean squared error
+rms <- results %>%
+  select(test_data) %>%
+  slice(3)
+
+# r2
+r2 <- results %>%
+  select(test_data) %>%
+  slice(4)
+
+# explained variance score
+evs <- results %>%
+  select(test_data) %>%
+  slice(5)
+
 # Mean expense on test data
 test_data <- read.csv("../data/processed/medical_cost_data_test.csv")
 mean_exp <- test_data %>%
@@ -228,12 +247,14 @@ kableExtra::kable(results)
 
 *Figure 12 : model evaluations on train and test data*
 
-A mean absolute error of `r mae` can seem to be a very high score for the regression model. However, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses.  Moreover, when we take a look at the $R^2$ score, which is equal to `r round(regression_error$test_data[4], 3)`, we realize that this score is pretty high, which means that our model explains most of the variability of our response data around its mean. The goodness of fit of the regression model is analzsed in the following section.
+We used several regression metrics for evaluating our model. Firstly, we used mean absolute error, which is the average of the absolute values of the difference between predicted expenses and actual expenses. For our predictive model, we got a mean absolute error of `r mae`. Although it seems like a high error, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses. Secondly, we used the mean squared error as the evaluation metric. For our final model, we got a mean squared error of `r mse`. The mean squared error is much higher than mean absolute error because the former is the average of the sum of the squares of the differences between the predicted expenses and actual expenses. This metric cannot be compared directly to mean absolute error because both the metrics have different units of measurement. Then we used root mean squared error, which is the square root of the mean squared error. We got a root mean squared error of `r rms`. We can compare this metric directly to the mean absolute error. However, the root means square penalizes the model more for making larger errors. Choosing the right metric between these two to report the model performance often requires domain knowledge and depends on how the predicted values are used in real life.  
+
+The last two metrics we used to report our model performance rely on the capability of our models to explain the variance of the response variable. $R^2$ score of `r r2` means our model explains `r r2*100` % of the variance in the response variable. This is pretty good as the model is able to explain most of the variance in the medical expenses in the test dataset. However, we can not rely entirely on $R^2$ score to conclude on the performance of our model. It should always be compared with the residual plot, which is shown in the next section of this report. Our final metric, explained variance score, is very similar to the $R^2$ score. If the expected value of the error terms is zero, both these metrics are exactly the same. In our model, we got these metrics almost the same, indicating that the mean value of the error is close to zero.   
 
 ### Goodness of fit
 ```{r  plot_predict_vs_actual}
 knitr::include_graphics("../reports/figures/predicted_vs_actual_plot.png")
-
+  
 ```
 
 *Figure 13 : Predicted VS actual values*
@@ -245,7 +266,7 @@ knitr::include_graphics("../reports/figures/residual_plot.png")
 
 *Figure 14 : Plot of the residuals*
 
-From the predicted Vs Actual plot, we can see ther are some errors in prediction at lower expenses. Overall the model does a pretty decent job of predicting the medical expenses given the patient information. 
+From the residual plot above, we can see that the model is accurate in predicting the expenses of most of the samples in the test dataset. There are more points on the positive side than the negative side. This indicates that our model is underestimating more often than overestimating when making an error. Overall the model does a pretty decent job of predicting the medical expenses given the patient information. 
 
 # Limitations and Future Directions
 
