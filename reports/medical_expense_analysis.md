@@ -1,5 +1,5 @@
 Medical Expense Data Analysis and Predictive Modeling
-================
+
 author: Karanpal Singh, Sreejith Munthikodu, Sirine Chahma </br>
 2020/01/24
 
@@ -95,9 +95,11 @@ relevant. For 4 categories are the following :
 
 ![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png)
 
-![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png)
+<center>
 
 *Figure 1 : Expenses VS Age*
+
+</center>
 
 It can be observed that the `Medical Expense` of people is increasing,
 as `Age`
@@ -107,7 +109,11 @@ increases.
 
 ![Figure 2 : Expenses VS BMI](../reports/figures/2.Expenses_VS_BMI.png)
 
-*Figure 2 : Expenses VS BMI*
+<center>
+
+Figure 2 : Expenses VS BMI\*
+
+</center>
 
 The highest expenses seem to occur for people who have a higher
 BMI.
@@ -117,7 +123,11 @@ BMI.
 ![Figure 3 :
 Expenses\_VS\_Gender](../reports/figures/3.Expenses_VS_Gender.png)
 
+<center>
+
 *Figure 3 : Expenses\_VS\_Gender*
+
+</center>
 
 The expenses seem to grow with age for both males and females. It looks
 like Males in their **20’s & 60’s** tend to pay more on their `Medical
@@ -132,7 +142,11 @@ We expect expenditures by smokers should be higher than non-smokers.
 ![Figure 4 : Expenses VS
 Smoker](../reports/figures/4.Expenses_VS_Smoker.png)
 
+<center>
+
 *Figure 4 : Expenses VS Smoker*
+
+</center>
 
 **Interesting\!\!\!** - As expected, health expenses of smokers are a
 lot higher than that of non-smokers.
@@ -142,7 +156,11 @@ lot higher than that of non-smokers.
 ![Figure 5 : Expenses VS BMI and
 Sex](../reports/figures/6.EXP_VS_BMI.png)
 
+<center>
+
 *Figure 5 : Expenses VS BMI and Sex*
+
+</center>
 
 The highest expenses seem to occur for people from both genders who have
 a BMI that is higher than 34.
@@ -151,7 +169,11 @@ a BMI that is higher than 34.
 
 ![Figure 6 : Correlation heatmap](../reports/figures/0.correlation.png)
 
+<center>
+
 *Figure 6 : Correlation heatmap*
+
+</center>
 
 We can notice that none of the features seem to be correlated with each
 other. Hence, the features don’t seem to be relevant individually.
@@ -299,8 +321,12 @@ greater
 
 </table>
 
+<center>
+
 *Figure 7 : Results of the test for the expenses of smokers VS
 non-smokers*
+
+</center>
 
 The exact p-value is
 ![4.6718552\\times 10^{-100}](https://latex.codecogs.com/png.latex?4.6718552%5Ctimes%2010%5E%7B-100%7D
@@ -470,7 +496,11 @@ two.sided
 
 </table>
 
+<center>
+
 *Figure 8 : Results of the test for the expenses of males VS females*
+
+</center>
 
 The exact p-value is
 ![0.035841](https://latex.codecogs.com/png.latex?0.035841 "0.035841")
@@ -555,7 +585,11 @@ StandardScaler
 
 </table>
 
+<center>
+
 *Figure 9 : summary of the feature transformations*
+
+</center>
 
 ### Model Selection
 
@@ -634,7 +668,7 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-0.0000
+0.000
 
 </td>
 
@@ -646,13 +680,13 @@ Mean absolute error, training
 
 <td style="text-align:right;">
 
-938.0060
+944.4180
 
 </td>
 
 <td style="text-align:right;">
 
-8295.8650
+8295.865
 
 </td>
 
@@ -668,13 +702,13 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-4102.0070
+4098.2120
 
 </td>
 
 <td style="text-align:right;">
 
-2808.8110
+2883.406
 
 </td>
 
@@ -686,13 +720,13 @@ Mean absolute error, validation
 
 <td style="text-align:right;">
 
-2485.7190
+2444.5270
 
 </td>
 
 <td style="text-align:right;">
 
-8313.0090
+8313.009
 
 </td>
 
@@ -708,31 +742,31 @@ training\_time(s)
 
 <td style="text-align:right;">
 
-0.0887
+0.1829
 
 </td>
 
 <td style="text-align:right;">
 
-0.0736
+0.187
 
 </td>
 
 <td style="text-align:right;">
 
-0.082
+0.168
 
 </td>
 
 <td style="text-align:right;">
 
-1.3292
+2.5254
 
 </td>
 
 <td style="text-align:right;">
 
-0.2062
+0.385
 
 </td>
 
@@ -742,8 +776,12 @@ training\_time(s)
 
 </table>
 
+<center>
+
 *Figure 10 : summary of baseline performance by various regression
 models*
+
+</center>
 
 Based on the above scores, DecisionTreeRegressor was selected as the
 final model and hyper-parameter tuning was done on it. In the data
@@ -831,7 +869,7 @@ regressor\_\_min\_samples\_split
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -841,7 +879,11 @@ regressor\_\_min\_samples\_split
 
 </table>
 
+<center>
+
 *Figure 11 : best parameters obtained from hyper-parameter optimization*
+
+</center>
 
 # Results
 
@@ -995,7 +1037,12 @@ Explained\_variance\_score
 
 </table>
 
+<center>
+
 *Figure 12 : model evaluations on train and test data*
+
+
+</center>
 
 We used several regression metrics for evaluating our model. Firstly, we
 used mean absolute error, which is the average of the absolute values of
@@ -1034,15 +1081,25 @@ the expected value of the error terms is zero, both these metrics are
 exactly the same. In our model, we got these metrics almost the same,
 indicating that the mean value of the error is close to zero.
 
+
 ### Goodness of fit
 
-![](../reports/figures/predicted_vs_actual_plot.png)<!-- -->
+<img src="../reports/figures/predicted_vs_actual_plot.png" width="804" />
+
+<center>
 
 *Figure 13 : Predicted VS actual values*
 
-![](../reports/figures/residual_plot.png)<!-- -->
+</center>
+
+<img src="../reports/figures/residual_plot.png" width="812" />
+
+<center>
 
 *Figure 14 : Plot of the residuals*
+
+
+</center>
 
 From the residual plot above, we can see that the model is accurate in
 predicting the expenses of most of the samples in the test dataset.
@@ -1051,6 +1108,7 @@ indicates that our model is underestimating more often than
 overestimating when making an error. Overall the model does a pretty
 decent job of predicting the medical expenses given the patient
 information.
+
 
 # Limitations and Future Directions
 

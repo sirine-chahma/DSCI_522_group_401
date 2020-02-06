@@ -63,14 +63,10 @@ For this exploratory analysis, we decided to gather the different BMI into 4 cat
 
 ##### 1. Let's see how `Medical Expenses` are changing with `Age` 
 
-```{r fig.cap='Figure 1 : Expenses VS Age'}
-knitr::include_graphics('../reports/figures/1.Expenses_VS_Age.png')
+![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png)
 
-```
+<center> *Figure 1 : Expenses VS Age* </center>
 
-![Figure 1 : Expenses VS Age](../reports/figures/1.Expenses_VS_Age.png) 
-
-*Figure 1 : Expenses VS Age* 
 
 It can be observed that the `Medical Expense` of people is increasing, as `Age` increases.
 
@@ -78,15 +74,18 @@ It can be observed that the `Medical Expense` of people is increasing, as `Age` 
 
 ![Figure 2 : Expenses VS BMI](../reports/figures/2.Expenses_VS_BMI.png)
 
-*Figure 2 : Expenses VS BMI*
+<center> Figure 2 : Expenses VS BMI* </center>
+
 
 The highest expenses seem to occur for people who have a higher BMI.
 
 ##### 3. Let's see how much money males and females spending on medical treatments between 18-64 Years
 
+
 ![Figure 3 : Expenses_VS_Gender](../reports/figures/3.Expenses_VS_Gender.png)
 
-*Figure 3 : Expenses_VS_Gender*
+<center> *Figure 3 : Expenses_VS_Gender* </center>
+
 
 The expenses seem to grow with age for both males and females. It looks like Males in their **20's & 60's** tend to pay more on their `Medical Expenses` than Females. Females in their **40's** are paying more than Males on their `Medical Expenses`.
 
@@ -95,25 +94,31 @@ The expenses seem to grow with age for both males and females. It looks like Mal
 
 We expect expenditures by smokers should be higher than non-smokers.
 
+
 ![Figure 4 : Expenses VS Smoker](../reports/figures/4.Expenses_VS_Smoker.png)
 
-*Figure 4 : Expenses VS Smoker*
+
+<center> *Figure 4 : Expenses VS Smoker*</center>
+
 
 **Interesting!!!** - As expected, health expenses of smokers are a lot higher than that of non-smokers.
 
 ##### 5. Let's see the male & female expenses over BMI
 
+
 ![Figure 5 : Expenses VS BMI and Sex](../reports/figures/6.EXP_VS_BMI.png)
 
-*Figure 5 : Expenses VS BMI and Sex*
+
+<center> *Figure 5 : Expenses VS BMI and Sex* </center>
 
 The highest expenses seem to occur for people from both genders who have a BMI that is higher than 34.
 
 ##### 6. Correlation between the variables
 
+
 ![Figure 6 : Correlation heatmap](../reports/figures/0.correlation.png)
 
-*Figure 6 : Correlation heatmap*
+<center> *Figure 6 : Correlation heatmap* </center>
 
 We can notice that none of the features seem to be correlated with each other. Hence, the features don't seem to be relevant individually.
 
@@ -132,11 +137,14 @@ $$H_1: \mu_{Smokers} > \mu_{Non-Smokers}$$
 
 Our null hypothesis states that the mean expense of smokers is less than equal to the mean expense of non-smokers and alternate hypothesis states that the expenses of smokers are higher than the expenses of non-smokers. We have used a One Sample t-test:
 
+
 ```{r}
 hypothesis_1 <- readr::read_csv('../reports/tables/1.hypothesis_smokers.csv')
 kableExtra::kable(hypothesis_1)
 ```
-*Figure 7 : Results of the test for the expenses of smokers VS non-smokers*
+
+<center> *Figure 7 : Results of the test for the expenses of smokers VS non-smokers* </center>
+
 
 The exact p-value is $`r hypothesis_1$p.value`$ which is very close to 0. However, while rendering the output to the table above it treats it as 0.
 
@@ -149,11 +157,13 @@ $$H_1: \mu_{Males} \neq \mu_{Females}$$
 
 Our Null hypothesis states that the mean expenses of males are equal to mean expenses of females and Alternate hypothesis states that there is a significant difference between these two quantities. We have used t-test to compare the mean of two groups and test results are as following:
 
-```{r}
+```{r }
 hypothesis_2 <- readr::read_csv('../reports/tables/2.hypothesis_sex.csv')
 kableExtra::kable(hypothesis_2)
 ```
-*Figure 8 : Results of the test for the expenses of males VS females*
+
+<center> *Figure 8 : Results of the test for the expenses of males VS females* </center>
+
 
 The exact p-value is $`r hypothesis_2$p.value`$ which is less than the significance level of $5\%$ hence, we can reject $H_0$ hypothesis and conclude that we have enough evidence to say mean expenses between Males and Females is not same. 
 
@@ -176,7 +186,8 @@ transformations <- transformations %>%
 kableExtra::kable(transformations)
 ```
 
-*Figure 9 : summary of the feature transformations*
+<center> *Figure 9 : summary of the feature transformations* </center>
+
 
 ### Model Selection
 
@@ -188,7 +199,8 @@ model_base <- model_base %>% rename("Error Metrics"=X )
 kableExtra::kable(model_base)
 ```
 
-*Figure 10 : summary of baseline performance by various regression models*
+<center> *Figure 10 : summary of baseline performance by various regression models* </center>
+
 
 Based on the above scores, DecisionTreeRegressor was selected as the final model and hyper-parameter tuning was done on it. In the data analysis pipeline, the selection of the model from the base models is currently done manually. We decided to choose  DecisionTreeRegressor because of its low training and validation score. All other models have considerable under-fit whereas the  DecisionTreeRegressor was over-fitting on the training data. Decision tree models require less preprocessing of the data compared to other models. Also, decision tree models are more interpretable than ensemble-based models such as Random Forest and Gradient Boosted Decision Trees. We decided to address the over-fit issues in the  DecisionTreeRegressor during the hyper-parameter tuning. The hyper-parameters `min_samples_split` and `max_depth` are chosen to address the over-fitting issue. 
 
@@ -201,7 +213,8 @@ hp <- hp %>% rename("Hyper-parameter"=X)
 kableExtra::kable(hp)
 ```
 
-*Figure 11 : best parameters obtained from hyper-parameter optimization*
+<center> *Figure 11 : best parameters obtained from hyper-parameter optimization* </center>
+
 
 # Results 
 
@@ -245,7 +258,8 @@ mean_exp <- test_data %>%
 kableExtra::kable(results)
 ```
 
-*Figure 12 : model evaluations on train and test data*
+<center> *Figure 12 : model evaluations on train and test data* </center>
+
 
 We used several regression metrics for evaluating our model. Firstly, we used mean absolute error, which is the average of the absolute values of the difference between predicted expenses and actual expenses. For our predictive model, we got a mean absolute error of `r mae`. Although it seems like a high error, considering the mean medical expense of `r mean_exp`, we are not very far from predicting the accurate expenses. Secondly, we used the mean squared error as the evaluation metric. For our final model, we got a mean squared error of `r mse`. The mean squared error is much higher than mean absolute error because the former is the average of the sum of the squares of the differences between the predicted expenses and actual expenses. This metric cannot be compared directly to mean absolute error because both the metrics have different units of measurement. Then we used root mean squared error, which is the square root of the mean squared error. We got a root mean squared error of `r rms`. We can compare this metric directly to the mean absolute error. However, the root means square penalizes the model more for making larger errors. Choosing the right metric between these two to report the model performance often requires domain knowledge and depends on how the predicted values are used in real life.  
 
@@ -257,14 +271,16 @@ knitr::include_graphics("../reports/figures/predicted_vs_actual_plot.png")
   
 ```
 
-*Figure 13 : Predicted VS actual values*
+<center> *Figure 13 : Predicted VS actual values* </center>
+
 
 ```{r  plot_residual}
 knitr::include_graphics("../reports/figures/residual_plot.png")
 
 ```
 
-*Figure 14 : Plot of the residuals*
+<center> *Figure 14 : Plot of the residuals* </center>
+
 
 From the residual plot above, we can see that the model is accurate in predicting the expenses of most of the samples in the test dataset. There are more points on the positive side than the negative side. This indicates that our model is underestimating more often than overestimating when making an error. Overall the model does a pretty decent job of predicting the medical expenses given the patient information. 
 
