@@ -45,6 +45,13 @@ To reset the repo to a clean state (which means with no intermediate or results 
 make clean
 ```
 
+## Dependency diagram of the Makefile
+
+
+```{r pressure, echo=FALSE, fig.cap="Makefile dependencies"}
+knitr::include_graphics("reports/Makefile.png")
+```
+
 
 ## Dependencies
 - Python 3.7.3 and Python packages:
