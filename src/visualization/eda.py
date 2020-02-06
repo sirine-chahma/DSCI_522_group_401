@@ -36,13 +36,33 @@ def main(input_data, output_location):
     training_df['charges'] = y_train
     
     #plotting the correlation between features
+    
+
+    
     cor = X_train.corr()
     cor = cor.reset_index()
     cor = pd.melt(cor, id_vars="index")
-    cor_map = alt.Chart(cor).mark_rect().encode(
-    alt.X('index:O', title='', axis=alt.Axis(labelAngle=0)),
+    cor = cor.replace([1], [None])
+    double_na(cor)
+    cor.loc[[14], ['value']] = cor['value'][11]
+    cor.loc[[11], ['value']] = None
+    heatmap=alt.Chart(cor).mark_rect().encode(
+    alt.X('index:O', title=''),
     alt.Y('variable:O', title=''),
     alt.Color('value:Q',scale = alt.Scale(domain=[0, 1], scheme = 'purplered'))
+    ).properties(title="Correlation map of the features",
+            width = 700,
+            height = 300
+    )
+    text = heatmap.mark_text(baseline='middle', fontSize=20).encode(
+    text=alt.Text('value:Q', format='.2'),
+    color=alt.condition(
+        alt.datum.Correlation >= 0.95,
+        alt.value('black'),
+        alt.value('white')
+    )
+    )
+    cor_map = (heatmap + text
     ).properties(title="Correlation map of the features", width = 700, height = 300
     ).configure_axis(labelFontSize = 12, titleFontSize = 15
     ).configure_title(fontSize = 18)
@@ -121,6 +141,24 @@ def main(input_data, output_location):
 
     # saving results as png
     exp_bmi.save(output_location + '/6.EXP_VS_BMI.png')
+    
+
+def double_na(cor):
+    '''
+    Set as None the values that we find twice in the correlation table
+    '''
+
+    ind={}
+
+    for i in range(cor.shape[0]):
+        for elem in ind:
+            if cor['variable'][i] in ind[elem]:
+                if cor['index'][i] == elem:
+                    cor.loc[[i], ['value']] = None
+        if cor['variable'][i] in ind :
+                ind[cor['variable'][i]].append(cor['index'][i])
+        else : 
+            ind[cor['variable'][i]] = []
 
 
 if __name__ == "__main__":

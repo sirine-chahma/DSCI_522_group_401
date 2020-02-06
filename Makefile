@@ -57,7 +57,7 @@ reports/tables/preprocessors.csv reports/tables/regression_models_base_errors.cs
 # Karan and Sirine are authors of this script and this was created in Milestone 2
 # We have included this in Makefile in Milestone 3
 reports/medical_expense_analysis.md : reports/medical_expense_analysis.Rmd docs/medical_expense_refs.bib reports/tables/preprocessors.csv reports/tables/regression_models_base_errors.csv reports/tables/hyperparameters.csv reports/tables/regression_errors.csv reports/figures/predicted_vs_actual_plot.png reports/figures/residual_plot.png reports/tables/1.hypothesis_smokers.csv reports/tables/2.hypothesis_sex.csv reports/figures/0.correlation.png reports/figures/1.Expenses_VS_Age.png reports/figures/2.Expenses_VS_BMI.png reports/figures/3.Expenses_VS_Gender.png reports/figures/4.Expenses_VS_Smoker.png reports/figures/6.EXP_VS_BMI.png data/processed/medical_cost_data_train.csv data/processed/medical_cost_data_test.csv data/original/medical_cost_data.csv
-	Rscript -e "rmarkdown::render('reports/medical_expense_analysis.Rmd')"
+	Rscript -e "library(rmarkdown);render('reports/medical_expense_analysis.Rmd')"
 
 # cleaning everything
 clean:
