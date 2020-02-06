@@ -559,14 +559,14 @@ StandardScaler
 
 ### Model Selection
 
-In our project, the target variable is continuous/numeric variable. When
-we have a continuous target variable and we are trying to predict it
-then we can use Regression methods. We are comparing different
-regression algorithms like Linear Regression, Decision Tree, KNN
-Regression and Random Forest Regression. After preprocessing and feature
-transformations, the above regression models fitted on the training data
-with the default parameters. A model with the best performance on the
-training and validation dataset is selected for hyper-parameter
+In our project, the target variable is a continuous/numeric variable. We
+can use regression methods to predict a continuous response variable.
+Here, in model selection, we are comparing different regression
+algorithms such as Linear Regression, Decision Tree, KNN Regression and
+Random Forest Regression. After preprocessing and feature
+transformation, the above regression models are fitted on the training
+data with the default parameters. A model with the best performance on
+the training and validation dataset is selected for hyper-parameter
 optimization. A summary of baseline performance by various regression
 models is given below.
 
@@ -751,8 +751,13 @@ analysis pipeline, the selection of the model from the base models is
 currently done manually. We decided to choose DecisionTreeRegressor
 because of its low training and validation score. All other models have
 considerable under-fit whereas the DecisionTreeRegressor was
-over-fitting on the training data. We decided to address the over-fit
-issues during the hyper-parameter tuning.
+over-fitting on the training data. Decision tree models require less
+preprocessing of the data compared to other models. Also, decision tree
+models are more interpretable than ensemble-based models such as Random
+Forest and Gradient Boosted Decision Trees. We decided to address the
+over-fit issues in the DecisionTreeRegressor during the hyper-parameter
+tuning. The hyper-parameters `min_samples_split` and `max_depth` are
+chosen to address the over-fitting issue.
 
 ### hyper-parameter tuning
 
