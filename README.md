@@ -47,6 +47,28 @@ can be found
 
 ## Usage
 
+There are two suggested ways to run this analysis:
+
+#### 1\. Using Docker
+
+*note - the instructions in this section also depends on running this in
+a unix shell (e.g., terminal or Git Bash)*
+
+To replicate the analysis, install
+[Docker](https://www.docker.com/get-started). Then clone this GitHub
+repository and run the following command at the command line/terminal
+from the root directory of this project:
+
+    docker run --rm -v "$(pwd):/home/rstudio/" singhkaranpal/milestone_4 make -C /home/rstudio/ all
+
+To reset the repo to a clean state, with no intermediate or results
+files, run the following command at the command line/terminal from the
+root directory of this project:
+
+    docker run --rm -v "$(pwd):/home/rstudio/" singhkaranpal/milestone_4 make -C /home/rstudio/ clean
+
+#### 2\. Without using Docker
+
 To replicate the analysis, clone this GitHub repository, install the
 [dependencies](#dependencies) listed below, and run the following
 command at the command line/terminal from the root directory of this
@@ -62,17 +84,7 @@ from the root directory of this project:
 
 ## Dependency diagram of the Makefile
 
-<div class="figure">
-
-<img src="reports/Makefile.png" alt="Makefile dependencies" width="8626" />
-
-<p class="caption">
-
-Makefile dependencies
-
-</p>
-
-</div>
+![Makefile dependencies](reports/Makefile.png)
 
 ## Dependencies
 
@@ -99,7 +111,7 @@ Makefile dependencies
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 
 <div id="ref-source">
 
