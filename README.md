@@ -60,6 +60,20 @@ from the root directory of this project:
 
     make clean
 
+## Dependency diagram of the Makefile
+
+<div class="figure">
+
+<img src="reports/Makefile.png" alt="Makefile dependencies" width="8626" />
+
+<p class="caption">
+
+Makefile dependencies
+
+</p>
+
+</div>
+
 ## Dependencies
 
   - Python 3.7.3 and Python packages:

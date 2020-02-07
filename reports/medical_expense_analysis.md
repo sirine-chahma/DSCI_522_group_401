@@ -1,5 +1,5 @@
 Medical Expense Data Analysis and Predictive Modeling
-
+================
 author: Karanpal Singh, Sreejith Munthikodu, Sirine Chahma </br>
 2020/01/24
 
@@ -102,8 +102,7 @@ relevant. For 4 categories are the following :
 </center>
 
 It can be observed that the `Medical Expense` of people is increasing,
-as `Age`
-increases.
+as `Age` increases.
 
 ##### 2\. Let’s see how `Medical Expenses` are changing with `BMI (Body Mass Index)`
 
@@ -115,8 +114,7 @@ Figure 2 : Expenses VS BMI\*
 
 </center>
 
-The highest expenses seem to occur for people who have a higher
-BMI.
+The highest expenses seem to occur for people who have a higher BMI.
 
 ##### 3\. Let’s see how much money males and females spending on medical treatments between 18-64 Years
 
@@ -132,8 +130,7 @@ Expenses\_VS\_Gender](../reports/figures/3.Expenses_VS_Gender.png)
 The expenses seem to grow with age for both males and females. It looks
 like Males in their **20’s & 60’s** tend to pay more on their `Medical
 Expenses` than Females. Females in their **40’s** are paying more than
-Males on their `Medical
-Expenses`.
+Males on their `Medical Expenses`.
 
 ##### 4\. Let’s see how `Smokers` and `Non-Smokers` are spending on medical treatments between 18-64 Years
 
@@ -186,8 +183,7 @@ two questions:
   - Are medical expenses of smokers are statistically higher than
     non-smokers?
   - Is there a significant statistical difference in expenses between
-    males and females?
-<br>
+    males and females? <br>
 
 ##### 1\. Are medical expenses of smokers are statistically higher than non-smokers?
 
@@ -337,8 +333,7 @@ We can observe that the p-value is less than the significance level of
 ![5\\%](https://latex.codecogs.com/png.latex?5%5C%25 "5\\%"). Hence, we
 can reject ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0")
 hypothesis and conclude that we have enough evidence to say the mean
-expenses of smoker is higher than the mean expenses of
-non-smokers.
+expenses of smoker is higher than the mean expenses of non-smokers.
 
 ##### 2\. Is there a significant statistical difference in expenses between males and females?
 
@@ -1041,7 +1036,6 @@ Explained\_variance\_score
 
 *Figure 12 : model evaluations on train and test data*
 
-
 </center>
 
 We used several regression metrics for evaluating our model. Firstly, we
@@ -1081,7 +1075,6 @@ the expected value of the error terms is zero, both these metrics are
 exactly the same. In our model, we got these metrics almost the same,
 indicating that the mean value of the error is close to zero.
 
-
 ### Goodness of fit
 
 <img src="../reports/figures/predicted_vs_actual_plot.png" width="804" />
@@ -1098,7 +1091,6 @@ indicating that the mean value of the error is close to zero.
 
 *Figure 14 : Plot of the residuals*
 
-
 </center>
 
 From the residual plot above, we can see that the model is accurate in
@@ -1108,7 +1100,6 @@ indicates that our model is underestimating more often than
 overestimating when making an error. Overall the model does a pretty
 decent job of predicting the medical expenses given the patient
 information.
-
 
 # Limitations and Future Directions
 
@@ -1144,7 +1135,7 @@ Language*. <https://CRAN.R-project.org/package=docopt>.
 <div id="ref-Hunter:2007">
 
 Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
-in Science & Engineering* 9 (3). IEEE COMPUTER SOC: 90–95.
+in Science & Engineering* 9 (3): 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
@@ -1185,7 +1176,7 @@ VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
 Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
 Visualizations for Python.” *Journal of Open Source Software*, December.
-The Open Journal. <https://doi.org/10.21105/joss.01057>.
+<https://doi.org/10.21105/joss.01057>.
 
 </div>
 
